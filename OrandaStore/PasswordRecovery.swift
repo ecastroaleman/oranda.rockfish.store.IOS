@@ -13,6 +13,8 @@ struct PasswordRecovery: View {
     @State var userName = ""
     @State var showmsg = true
     @State var mensaje = ""
+    
+    @State var viewNewUser = false
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     var body: some View {
         VStack{
@@ -158,11 +160,13 @@ struct PasswordRecovery: View {
                 Text("Aùn no tienes cuenta ?")
                     .foregroundColor(Color.white.opacity(0.6))
                 
-                Button(action: {}, label: {
+                Button(action: {viewNewUser.toggle()}, label: {
                     Text("Crear Cuenta")
                         .fontWeight(.heavy)
                         .foregroundColor(Color("green"))
-                })
+                }) .sheet(isPresented: $viewNewUser){
+                    NuevoUsuario()
+                }
             }
         
             .padding(.vertical)
