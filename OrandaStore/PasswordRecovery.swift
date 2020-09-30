@@ -194,8 +194,3 @@ struct PasswordRecovery_Previews: PreviewProvider {
         PasswordRecovery()
     }
 }
-
-enum NetworkingError: Error {
-    case badUrl
-    case badResponse
-}

@@ -9,17 +9,22 @@
 /* Begin PBXBuildFile section */
 		DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79825200954002F182A /* PasswordRecovery.swift */; };
 		DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79B2520327D002F182A /* NuevoUsuario.swift */; };
+		DD71040D2523E05100FA673A /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71040C2523E05100FA673A /* Temporal.swift */; };
 		DD82234D251AD56A0057D7D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82234C251AD56A0057D7D3 /* AppDelegate.swift */; };
 		DD82234F251AD56A0057D7D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */; };
 		DD822351251AD56A0057D7D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD822350251AD56A0057D7D3 /* ContentView.swift */; };
 		DD822353251AD56D0057D7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822352251AD56D0057D7D3 /* Assets.xcassets */; };
 		DD822356251AD56D0057D7D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */; };
 		DD822359251AD56D0057D7D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD822357251AD56D0057D7D3 /* LaunchScreen.storyboard */; };
+		DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF092522D39400D2DBAD /* NetworkingService.swift */; };
+		DDFADF0E2522D3F500D2DBAD /* nUsuarioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */; };
+		DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD56B79825200954002F182A /* PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecovery.swift; sourceTree = "<group>"; };
 		DD56B79B2520327D002F182A /* NuevoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuario.swift; sourceTree = "<group>"; };
+		DD71040C2523E05100FA673A /* Temporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
 		DD822349251AD56A0057D7D3 /* OrandaStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrandaStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD82234C251AD56A0057D7D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +33,9 @@
 		DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD822358251AD56D0057D7D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD82235A251AD56D0057D7D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDFADF092522D39400D2DBAD /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nUsuarioResponse.swift; sourceTree = "<group>"; };
+		DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nUsuarioErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,8 @@
 		DD82234B251AD56A0057D7D3 /* OrandaStore */ = {
 			isa = PBXGroup;
 			children = (
+				DDFADF082522D37F00D2DBAD /* WS */,
+				DDFADF022522C92000D2DBAD /* Schema */,
 				DD82234C251AD56A0057D7D3 /* AppDelegate.swift */,
 				DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */,
 				DD822350251AD56A0057D7D3 /* ContentView.swift */,
@@ -69,6 +79,7 @@
 				DD822357251AD56D0057D7D3 /* LaunchScreen.storyboard */,
 				DD82235A251AD56D0057D7D3 /* Info.plist */,
 				DD822354251AD56D0057D7D3 /* Preview Content */,
+				DD71040C2523E05100FA673A /* Temporal.swift */,
 			);
 			path = OrandaStore;
 			sourceTree = "<group>";
@@ -79,6 +90,23 @@
 				DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DDFADF022522C92000D2DBAD /* Schema */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Schema;
+			sourceTree = "<group>";
+		};
+		DDFADF082522D37F00D2DBAD /* WS */ = {
+			isa = PBXGroup;
+			children = (
+				DDFADF092522D39400D2DBAD /* NetworkingService.swift */,
+				DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */,
+				DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */,
+			);
+			path = WS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +184,10 @@
 				DD82234F251AD56A0057D7D3 /* SceneDelegate.swift in Sources */,
 				DD822351251AD56A0057D7D3 /* ContentView.swift in Sources */,
 				DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */,
+				DD71040D2523E05100FA673A /* Temporal.swift in Sources */,
+				DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */,
+				DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */,
+				DDFADF0E2522D3F500D2DBAD /* nUsuarioResponse.swift in Sources */,
 				DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -278,6 +278,7 @@ struct Home : View {
     @State var userName = ""
     @State var password = ""
     @State var viewRecPass = false
+    @State var showNewUser =  false
     @AppStorage("stored_User") var user = "ecastroaleman@gmail.com"
     @AppStorage("status1") var logged = false
     
@@ -298,7 +299,7 @@ struct Home : View {
                             .fontWeight(.bold)
                             .foregroundColor(Color("orange"))
                         
-                        Text("Inresa tus datos para Logearte...")
+                        Text("Iniciar sesiòn con su cuenta...")
                             .foregroundColor(Color.white.opacity(0.5))
                     })
                     Spacer(minLength: 0)
@@ -343,8 +344,10 @@ struct Home : View {
                     
                     if (userName == "ecastroaleman@gmail.com" && password == "abcd1234"){
                         print ("Logeado")
-                        withAnimation(.easeOut){logged.toggle()
-                            logged = true}
+                        withAnimation(.easeOut){
+                            logged = true
+                            self.logged.toggle()
+                            }
                         
                     }
                     
@@ -386,26 +389,30 @@ struct Home : View {
                         Text("Olvidò su Password ?")
                             .foregroundColor(Color("green"))
                 }).padding(.top,8)
-                .sheet(isPresented: $viewRecPass){
+                .fullScreenCover(isPresented: $viewRecPass){
                     PasswordRecovery()
                 }
                 
                 Spacer(minLength: 0)
                 
                 HStack(spacing: 5){
+                  
                     Text("Aùn no tienes cuenta ?")
                         .foregroundColor(Color.white.opacity(0.6))
-                    NavigationLink(destination: NuevoUsuario()){
-                        Text("Crear Cuenta")
-                            .fontWeight(.heavy)
-                            .foregroundColor(Color("green"))
-                    }
                     
-              /*      Button(action: {}, label: {
+                /*    NavigationLink(destination: NuevoUsuario()){
                         Text("Crear Cuenta")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("green"))
-                    })*/
+                    }*/
+                    
+                    Button(action: {self.showNewUser.toggle()}, label: {
+                        Text("Crear Cuenta")
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color("green"))
+                    }).fullScreenCover(isPresented: $showNewUser){
+                      NuevoUsuario()
+                    }
                 }
                 
                 .padding(.vertical)

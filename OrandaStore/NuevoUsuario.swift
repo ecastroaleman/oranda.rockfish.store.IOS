@@ -7,13 +7,17 @@
 //
 
 import SwiftUI
+import Combine
 
 struct NuevoUsuario: View {
   //  @State var tratamiento : String
     @State var nombre : String = ""
     @State var selected = "<-Seleccione->"
     @State var show = false
+    
     var body: some View {
+        
+        ScrollView(.vertical, showsIndicators: false ){
         VStack{
          
            
@@ -152,10 +156,12 @@ struct NuevoUsuario: View {
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
+    //    .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+      //  .animation(.easeOut)
+        
+    } // scrollView
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
         .animation(.easeOut)
-        
-     
     }
   
 }
@@ -235,14 +241,17 @@ struct NewUser : View {
     @State var fecha = ""
     @State var selection = 1
     @Binding var show : Bool
-    @State var index = 0
+    @State var index = 1
     @State private var nac = Date()
     @State private var valida = "ERROR"
     @State private var showValCampos = false
     @State private var ofertas : Bool = false
     @State private var suscripcion : Bool = false
     @State private var politicas : Bool = false
-    
+    @State private var codmensaje = ""
+    @State private var showHome  = false
+    @State private var showBtnNUser = false
+    let networkingService = NetworkingService()
     var body : some View {
         VStack{
             VStack{
@@ -250,22 +259,22 @@ struct NewUser : View {
                 HStack(spacing: 15){
                     
                     icono(tipo: "person.fill")
-                     Button(action:{self.index = 0}){
+                     Button(action:{self.index = 1}){
                         Text("Sr.")
-                            .foregroundColor(self.index == 0 ? Color("orange") : .white)
+                            .foregroundColor(self.index == 1 ? Color("orange") : .white)
                             .fontWeight(.bold)
                       //      .padding(.vertical,5)
                             .frame(width: (UIScreen.main.bounds.width - 130)/3)
-                    }.background(self.index == 0 ? Color.white : Color.clear)
+                    }.background(self.index == 1 ? Color.white : Color.clear)
                     .clipShape(Capsule())
                     
-                   Button(action:{self.index = 1}){
+                   Button(action:{self.index = 2}){
                         Text("Sra.")
-                            .foregroundColor(self.index == 1 ? Color("orange") : .white)
+                            .foregroundColor(self.index == 2 ? Color("orange") : .white)
                             .fontWeight(.bold)
                        //     .padding(.vertical,5)
                             .frame(width: (UIScreen.main.bounds.width - 130)/3)
-                    }.background(self.index == 1 ? Color.white : Color.clear)
+                    }.background(self.index == 2 ? Color.white : Color.clear)
                     .clipShape(Capsule())
                     
                     Button(action:{self.index = 3}){
@@ -300,7 +309,7 @@ struct NewUser : View {
                     
                     Button(action:{}){
                         Image(systemName: "eye")
-                            .foregroundColor(.black)
+                            .foregroundColor(.gray)
                     }
                 
                 }.padding(.vertical,10)
@@ -346,14 +355,75 @@ struct NewUser : View {
             .cornerRadius(10)
             .padding(.top,25)
             
+            VStack {
             Button(action: {
-                valida =  validaCampos(tratamiento: index,nombre: nombre,apellido: apellido,email: email,contrasena: contrasena,nac: nac)
+                valida =  validaCampos(tratamiento: index,nombre: nombre,apellido: apellido,email: email,contrasena: contrasena,nac: nac, politicas: politicas)
                 
                 if (valida != "OK"){
                     showValCampos.toggle()
                 }else {
                     
                     print("LLama servicio de crear Usuario")
+                    do{
+                        let formatter3 = DateFormatter()
+                        formatter3.dateFormat = "yyyy-MM-dd"
+                        
+                        
+                        let  nuser = newUser(id_gender: index, firstname: nombre, lastname: apellido, email: email, passwd: contrasena, birthday: formatter3.string(from: nac), newsletter:  suscripcion ? 1 : 0, optin:  suscripcion ? 1 : 0)
+                        
+                           let cumple = formatter3.string(from: nac)
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    
+                    let data = try encoder.encode(nuser)
+                    print(String(data: data, encoding: .utf8)!)
+                        
+                        var dict = Dictionary<String, Any>()
+                        dict = ["id_gender" :index as AnyObject, "nombre" :nombre as AnyObject, "apellido" :apellido as AnyObject,  "email" : email as AnyObject, "passwd" :contrasena as AnyObject, "birthday" : cumple as AnyObject, "nesletter" : suscripcion ? 1 : 0 as AnyObject, "optin" : suscripcion ? 1 : 0 as AnyObject]
+
+                        
+            
+                        
+                        self.networkingService.request(endpoint: "", parameters: dict ) {  (result) in
+                         print("Resultado -> \(result)")
+                            switch result {
+                                       case .success(let user):
+                                          
+                                        valida = user.Mensaje
+                                        showValCampos.toggle()
+                                     
+                                      
+                                    case .failure(let error):
+                                        
+                                        
+                                          // var retorno = ""
+                                        print ("Error EC -> \(error.self)")
+                                           if (error.localizedDescription == "invalid_grant"){
+                                           valida = "Error"
+                                           } //else {retorno = error.localizedDescription}
+                                       
+                                        if (" \(error.self)" == " badResponse")
+                                        {self.valida = "Intente de nuevo, existen problemas de conexion"}
+                                          // self.muestraAlerta(msg: "Alerta")
+                                             print("Error -> \(error.localizedDescription)")
+                                         
+                                           return
+                                       }
+                                       
+                                   }//fin networking
+                        //fin
+                        
+                        
+                    
+                    } catch {
+                        valida  = "Ocurriò un Error Interno"
+                        showValCampos.toggle()
+                          print("JSONSerialization error:", error)
+                      }
+                    
+                    
+                    
+                    
                 }
                       
                          
@@ -364,16 +434,40 @@ struct NewUser : View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 180)
+                    .frame(width: UIScreen.main.bounds.width/2 - 20)
             }.background(Color("orange"))
             .cornerRadius(8)
-            .offset(y: -30)
-            .padding(.bottom, -40)
+          //  .offset(y: -30)
+          //  .padding(.bottom, -40)
             .shadow(radius: 15 )
             .alert(isPresented: $showValCampos, content: {
                 Alert(title: Text("ERROR"), message: Text("\(valida)"), dismissButton: .cancel(Text("Aceptar")))
             })
+            .opacity(validaCampos(tratamiento: index,nombre: nombre,apellido: apellido,email: email,contrasena: contrasena,nac: nac, politicas: politicas) ? 1:0)
+            .disabled(validaCampos(tratamiento: index,nombre: nombre,apellido: apellido,email: email,contrasena: contrasena,nac: nac, politicas: politicas) ? false : true)
             
+                Button(action: {showHome.toggle()} ){
+                    HStack{
+                    Image(systemName: "return")
+                        .foregroundColor(Color.white)
+                        .padding(.horizontal,10)
+                    Text("REGRESAR")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .padding(.vertical)
+                        .frame(width: UIScreen.main.bounds.width/2-75)
+                    }
+                }.background(Color("orange"))
+                .cornerRadius(8)
+              //  .offset(y: -30)
+                //.padding(.bottom, -40)
+                .shadow(radius: 15 )
+                .fullScreenCover(isPresented: $showHome) {
+                    Home()
+                        .preferredColorScheme(.dark)
+                        .navigationBarHidden(true)
+                }.animation(.easeOut)
+            }
         }
     }
 }
@@ -400,16 +494,39 @@ struct Campo: View {
                 .foregroundColor(.white)
             
             TextField(titulo, text: $tratamiento)
+                .foregroundColor(.white)
         }.padding(.vertical, 15)
     }
 }
 
-func validaCampos(tratamiento : Int , nombre : String ,apellido : String ,email : String , contrasena : String ,nac : Date) -> String {
+
+func validaCampos(tratamiento : Int , nombre : String ,apellido : String ,email : String , contrasena : String ,nac : Date, politicas: Bool) -> Bool {
+   
+  
+    if (nombre.count == 0 || apellido.count == 0 || email.count == 0 || contrasena.count == 0) {
+        return false }
+    else { return true }
+}
+
+func validaCampos(tratamiento : Int , nombre : String ,apellido : String ,email : String , contrasena : String ,nac : Date, politicas: Bool) -> String {
     var ret = "OK"
     if (tratamiento < 0 && tratamiento > 2) {ret = "Debe seleccionar un Tratamiento."; return ret}
     if (nombre.count < 1 || apellido.count < 1) {ret = "Debe ingresar su Nombre y Apellido."; return ret;}
     if (!validateEmail(email)){ret = "Debe ingresar un Email valido."; return ret;}
     if (contrasena.count == 0){ret = "Debe ingresar una contraseña."; return ret;}
+    if (!politicas){ret = "Debe aceptar los Terminos y Condiciones"; return ret;}
    
    return ret
 }
+
+struct newUser: Codable {
+    let id_gender: Int?
+    let firstname: String?
+    let lastname: String?
+    let email: String?
+    let passwd: String?
+    let birthday: String?
+    let newsletter: Int?
+    let optin: Int?
+}
+
