@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "cf57c7049f5950e3f59e331e44b839394e90334f_cropped-craig-lovelidge-5iiI5wVXY8M-unsplash-scaled-1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

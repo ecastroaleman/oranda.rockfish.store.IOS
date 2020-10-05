@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "e20a9822585bc0d7ebcd7ed21139c99314b4180a_oranda.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

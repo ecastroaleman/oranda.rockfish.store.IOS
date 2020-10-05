@@ -21,7 +21,7 @@ struct ContentView: View {
         if logged {
             
                 Menu()
-                .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+                .preferredColorScheme(.dark)
                 .navigationBarHidden(true)
             
                 
@@ -79,161 +79,22 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-struct Menu : View {
-    @State var edges = UIApplication.shared.windows.first?.safeAreaInsets
-    @State var width = UIScreen.main.bounds.width
-    @State var show = false
-    @State var selectedIndex = ""
-    @State var min : CGFloat = 0
-    @AppStorage("status1") var logged = false
-    var body: some View {
-        
-        ZStack {
-        VStack {
-            ZStack {
-            HStack {
-                Button(action: {
-                    
-                    withAnimation(.spring()){
-                        show.toggle()
-                    }
-                    
-                }, label: {
-                    Image(systemName: "line.horizontal.3")
-                        .font(.system(size: 22))
-                        .foregroundColor(.black)
-                })
-                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+    struct CustomShape : Shape {
+        @Binding var min : CGFloat
+        func path(in rect: CGRect) -> Path {
+            return Path{ path in
+                path.move(to: CGPoint(x: rect.width, y: 0))
+                path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+                path.addLine(to: CGPoint(x: 35, y: rect.height))
+                path.addLine(to: CGPoint(x: 35, y: 0))
+                path.move(to: CGPoint(x: 35, y: min-15))
+                path.addQuadCurve(to: CGPoint(x: 35, y: min+90), control: CGPoint(x: -35, y: min+35))
                 
-                Button(action: {
-                    print("\(selectedIndex)")
-                    withAnimation(.spring()){
-                        show.toggle()
-                    }
-                    
-                }, label: {
-                    Image("pic")
-                        .resizable()
-                        .renderingMode(.original)
-                        .frame(width: 35, height: 35)
-                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                })
+                
                 
             }
-                
-                Text("Menu Inicio")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .background(Color("orange"))
-                
-            }.padding()
-            .padding(.top,edges!.top )
-            .background(Color.white)
-            .shadow(color: Color.black.opacity(0.1), radius: 5, x:0, y:5 )
-            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-            Text(selectedIndex)
-          
-            
-            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-        }
-     
-            HStack(spacing: 0) {
-                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                
-                VStack{
-                    HStack{
-                        Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                        Button(action: {
-                            
-                            withAnimation(.spring()){
-                                show.toggle()
-                            }
-                            
-                        }, label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 22, weight: .bold))
-                                .foregroundColor(.white)
-                        })
-                    }
-                    .padding()
-                    .padding(.top, edges!.top)
-                    
-                    HStack(spacing: 15){
-                        
-                        GeometryReader{reader in
-                        Image("pic")
-                            .resizable()
-                            .frame(width: 75, height: 75)
-                            .clipShape(Circle())
-                            .onAppear(perform: {
-                                self.min = reader.frame(in: .global).minY
-                            })
-                            
-                        } .frame(width: 75, height: 75)
-                        VStack(alignment: .leading, spacing: 5 ,content: {
-                            Text("Emilio")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                            
-                            Text("ecastro@gmail.com")
-                                .fontWeight(.semibold)
-                        })
-                        .foregroundColor(.white)
-                            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                        }
-                    .padding(.horizontal)
-                    
-                    VStack(alignment: .leading, content: {
-                        MenuButtons(image: "cart", title: "My Orders",selected: $selectedIndex, show: $show,logged: logged)
-                        MenuButtons(image: "person", title: "My Profile",selected: $selectedIndex, show: $show,logged: logged)
-                        MenuButtons(image: "mappin", title: "Delivery Address",selected: $selectedIndex, show: $show,logged: logged)
-                        MenuButtons(image: "creditcard", title: "Payment Method",selected: $selectedIndex, show: $show,logged: logged)
-                        MenuButtons(image: "envelope", title: "Contact Us",selected: $selectedIndex, show: $show, logged: logged)
-                        
-                        DropDown(titulo: "Peces")
-                        DropDown(titulo: "Accesorios")
-                        DropDown(titulo: "Alimento")
-                        
-                        MenuButtons(image: "info.circle", title: "Help & FAQs",selected: $selectedIndex, show: $show,logged: logged)
-                        
-                        MenuButtons(image: "arrow.left.circle", title: "Salir", selected: $selectedIndex, show: $show
-                                    ,logged: logged)
-                    })
-                    .padding(.top)
-                    .padding(.leading,40)
-                   
-                    
-                    
-                    Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                }
-                .frame(width: width-100)
-                .background(Color("orange").clipShape(CustomShape(min: $min)))
-                .offset(x: show ? 0 : width-100)
-            }
-            .background(Color.black.opacity(show ? 0.3 : 0))
-            
-    }
-        .ignoresSafeArea(.all, edges: .all)
-}
-}
-
-struct CustomShape : Shape {
-    @Binding var min : CGFloat
-    func path(in rect: CGRect) -> Path {
-        return Path{ path in
-            path.move(to: CGPoint(x: rect.width, y: 0))
-            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-            path.addLine(to: CGPoint(x: 35, y: rect.height))
-            path.addLine(to: CGPoint(x: 35, y: 0))
-            path.move(to: CGPoint(x: 35, y: min-15))
-            path.addQuadCurve(to: CGPoint(x: 35, y: min+90), control: CGPoint(x: -35, y: min+35))
-            
-            
-            
         }
     }
-}
 
 struct MenuButtons: View {
     var image : String
@@ -275,7 +136,7 @@ struct MenuButtons: View {
 
 struct Home : View {
     
-    @State var userName = ""
+    @State var userName = "ecastroaleman@gmail.com"
     @State var password = ""
     @State var viewRecPass = false
     @State var showNewUser =  false

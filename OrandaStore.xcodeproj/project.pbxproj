@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD05CDFC252ABECF0036241D /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05CDFB252ABECF0036241D /* HomeList.swift */; };
+		DD05CDFF252AC4F10036241D /* ProductoDestacado.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05CDFE252AC4F10036241D /* ProductoDestacado.swift */; };
+		DD05CE02252AC53A0036241D /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05CE01252AC53A0036241D /* ProductItem.swift */; };
+		DD386CC32527FAD200384EAE /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD386CC22527FAD200384EAE /* Menu.swift */; };
+		DD386CC9252807EE00384EAE /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD386CC8252807EE00384EAE /* ItemView.swift */; };
+		DD386CCE2528080500384EAE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD386CCD2528080500384EAE /* Item.swift */; };
+		DD386CD225280D5D00384EAE /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD386CD125280D5C00384EAE /* CustomCorner.swift */; };
+		DD51264F2529305E0056B4C2 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51264E2529305E0056B4C2 /* Banner.swift */; };
 		DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79825200954002F182A /* PasswordRecovery.swift */; };
 		DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79B2520327D002F182A /* NuevoUsuario.swift */; };
 		DD71040D2523E05100FA673A /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71040C2523E05100FA673A /* Temporal.swift */; };
@@ -22,6 +30,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD05CDFB252ABECF0036241D /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
+		DD05CDFE252AC4F10036241D /* ProductoDestacado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoDestacado.swift; sourceTree = "<group>"; };
+		DD05CE01252AC53A0036241D /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
+		DD386CC22527FAD200384EAE /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		DD386CC8252807EE00384EAE /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		DD386CCD2528080500384EAE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		DD386CD125280D5C00384EAE /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
+		DD51264E2529305E0056B4C2 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		DD56B79825200954002F182A /* PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecovery.swift; sourceTree = "<group>"; };
 		DD56B79B2520327D002F182A /* NuevoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuario.swift; sourceTree = "<group>"; };
 		DD71040C2523E05100FA673A /* Temporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
@@ -49,6 +65,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD386CC7252807C900384EAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD386CC8252807EE00384EAE /* ItemView.swift */,
+				DD386CD125280D5C00384EAE /* CustomCorner.swift */,
+				DD51264E2529305E0056B4C2 /* Banner.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD386CCC252807F800384EAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD386CCD2528080500384EAE /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DD822340251AD56A0057D7D3 = {
 			isa = PBXGroup;
 			children = (
@@ -68,9 +102,12 @@
 		DD82234B251AD56A0057D7D3 /* OrandaStore */ = {
 			isa = PBXGroup;
 			children = (
+				DD386CCC252807F800384EAE /* Model */,
+				DD386CC7252807C900384EAE /* View */,
 				DDFADF082522D37F00D2DBAD /* WS */,
 				DDFADF022522C92000D2DBAD /* Schema */,
 				DD82234C251AD56A0057D7D3 /* AppDelegate.swift */,
+				DD386CC22527FAD200384EAE /* Menu.swift */,
 				DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */,
 				DD822350251AD56A0057D7D3 /* ContentView.swift */,
 				DD56B79825200954002F182A /* PasswordRecovery.swift */,
@@ -95,6 +132,9 @@
 		DDFADF022522C92000D2DBAD /* Schema */ = {
 			isa = PBXGroup;
 			children = (
+				DD05CDFB252ABECF0036241D /* HomeList.swift */,
+				DD05CDFE252AC4F10036241D /* ProductoDestacado.swift */,
+				DD05CE01252AC53A0036241D /* ProductItem.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -182,11 +222,19 @@
 			files = (
 				DD82234D251AD56A0057D7D3 /* AppDelegate.swift in Sources */,
 				DD82234F251AD56A0057D7D3 /* SceneDelegate.swift in Sources */,
+				DD05CE02252AC53A0036241D /* ProductItem.swift in Sources */,
+				DD386CD225280D5D00384EAE /* CustomCorner.swift in Sources */,
 				DD822351251AD56A0057D7D3 /* ContentView.swift in Sources */,
 				DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */,
+				DD386CCE2528080500384EAE /* Item.swift in Sources */,
+				DD05CDFC252ABECF0036241D /* HomeList.swift in Sources */,
+				DD386CC32527FAD200384EAE /* Menu.swift in Sources */,
+				DD386CC9252807EE00384EAE /* ItemView.swift in Sources */,
 				DD71040D2523E05100FA673A /* Temporal.swift in Sources */,
+				DD05CDFF252AC4F10036241D /* ProductoDestacado.swift in Sources */,
 				DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */,
 				DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */,
+				DD51264F2529305E0056B4C2 /* Banner.swift in Sources */,
 				DDFADF0E2522D3F500D2DBAD /* nUsuarioResponse.swift in Sources */,
 				DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */,
 			);
