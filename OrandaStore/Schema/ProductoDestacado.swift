@@ -56,15 +56,17 @@ struct ProductoDestacado : View {
 }
 
 struct Certificate: Identifiable {
-    var id = UUID()
+    var id : Int
     var title: String
     var image: String
+    var precio: String
+    
 }
 
 let certificateData = [
-    Certificate(title: "UI Design", image: "oranda1"),
-    Certificate(title: "SwiftUI", image: "oranda2"),
-    Certificate(title: "Sketch", image: "black"),
+    Certificate(id: 1, title: "Alimento en Hojuela", image: "https://i.pinimg.com/originals/4c/16/4a/4c164abbff33d3eeb213f5d6586a7d90.jpg",precio: "25.00"),
+    Certificate(id: 2, title: "SwiftUI", image: "oranda2", precio: "25.00"),
+    Certificate(id: 3, title: "Sketch", image: "black", precio: "25.00"),
 ]
 
 #if DEBUG

@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import Foundation
+import Combine
 
 struct ProductItem: View {
     var title = "UI Design"
@@ -35,13 +37,14 @@ struct ProductItem: View {
                     .padding(.trailing, 20.0)
             }
             
-            Image(image)
+            URLImage(url: "https://oranda.rockfish.store/api-img.php")
+                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
                // .renderingMode(.original)
-                .resizable()
-                .frame(minWidth: 0, maxWidth: 250, minHeight:
-                    0, maxHeight: 200)
+               // .resizable()
+          //      .frame(minWidth: 0, maxWidth: 250, minHeight:
+          //          0, maxHeight: 200)
                // .offset(y: 50)
-                .cornerRadius(50)
+            //    .cornerRadius(50)
         }
         .background(background)
         .cornerRadius(20)
