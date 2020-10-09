@@ -18,12 +18,13 @@ struct URLImage: View {
         self.imageLoader.downloadImage(url: self.url)
     }
     var body: some View {
-        //Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         if let data = self.imageLoader.downloadedData {
             return Image(uiImage: UIImage(data: data)!).resizable()
                 
+              //  .renderingMode(.original)
         }else {
             return Image("placeholder").resizable()
+                .renderingMode(.original)
         }
     }
 }

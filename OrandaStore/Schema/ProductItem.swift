@@ -11,50 +11,68 @@ import Foundation
 import Combine
 
 struct ProductItem: View {
-    var title = "UI Design"
-    var image = "oranda1"
-    var background = Color.black
+    var id : Int
+    var title : String
+    var image : String
+    var background = Color.gray
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                VStack(alignment: .leading) {
+      
+        VStack(alignment: .center) {
+            
+            
+            URLImage(url: image)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 170, height: 150)
+              
+               
+               // .resizable()
+         //       .frame(minWidth: 0, maxWidth: 250, minHeight:
+           //         0, maxHeight: 200)
+               // .offset(y: 50)
+             //   .cornerRadius(20)
+               // .padding(10)
+                
+        
+           
                     Text(title)
                         .font(.headline)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    Text("certificate")
-                        .foregroundColor(Color(.displayP3, red: 0.615686274509804, green: 0.8588235294117647, blue: 0.9058823529411765))
-                }
-                .frame(width: 100, alignment: .leading)
-                .padding(20)
+                        .foregroundColor(Color.white)
+                        .lineLimit(2)
+                        // .multilineTextAlignment(.trailing)
+                        .padding(.top,10)
+                        
+                    Text("Q. 25.00")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 25))
+           
+                        
+               
                 
-                Spacer()
+               
                 
-                Image("Logo")
+             /*   Image("Logo")
                     .resizable()
                     .renderingMode(.original)
                     .frame(width: 30, height: 30)
-                    .padding(.trailing, 20.0)
-            }
+                    .padding(.trailing, 20.0)*/
             
-            URLImage(url: "https://oranda.rockfish.store/api-img.php")
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-               // .renderingMode(.original)
-               // .resizable()
-          //      .frame(minWidth: 0, maxWidth: 250, minHeight:
-          //          0, maxHeight: 200)
-               // .offset(y: 50)
-            //    .cornerRadius(50)
+            
+         
+                
         }
         .background(background)
-        .cornerRadius(20)
+       // .cornerRadius(20)
+       
+    
     }
 }
 
 #if DEBUG
 struct ProductItem_Previews : PreviewProvider {
     static var previews: some View {
-        ProductItem().previewLayout(.sizeThatFits)
+      
+        ProductItem(id: 1,title: "Alimento en Hojuela", image: "https://oranda.rockfish.store/27-large_default/alimento-en-hojuela.jpg").previewLayout(.sizeThatFits)
     }
 }
 #endif

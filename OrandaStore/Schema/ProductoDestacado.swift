@@ -13,7 +13,7 @@ struct ProductoDestacado : View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            Text("Producto Destacado")
+            Text("Productos Destacados")
                 .font(.system(size: 20))
                 .fontWeight(.heavy)
                 .padding(.leading, 20)
@@ -23,8 +23,9 @@ struct ProductoDestacado : View {
                 HStack(spacing: 15) {
                     ForEach(certificates) { item in
                         
-                        ProductItem(title: item.title, image: item.image)
-                            .frame(width: 230.0, height: 160)
+                        ProductItem(id: item.id, title: item.title, image: item.image)
+                            .cornerRadius(20)
+                         //   .frame(width: 230.0, height: 160)
                        //     .shadow(color: Color("orange"), radius: 10, x: 0, y: 10)
                         /*    .contextMenu {
                                 VStack {
@@ -64,9 +65,9 @@ struct Certificate: Identifiable {
 }
 
 let certificateData = [
-    Certificate(id: 1, title: "Alimento en Hojuela", image: "https://i.pinimg.com/originals/4c/16/4a/4c164abbff33d3eeb213f5d6586a7d90.jpg",precio: "25.00"),
-    Certificate(id: 2, title: "SwiftUI", image: "oranda2", precio: "25.00"),
-    Certificate(id: 3, title: "Sketch", image: "black", precio: "25.00"),
+    Certificate(id: 1, title: "Alimento en Hojuela", image: "https://oranda.rockfish.store/27-large_default/alimento-en-hojuela.jpg",precio: "Q. 25.00"),
+    Certificate(id: 2, title: "Filtros Boyu", image: "https://oranda.rockfish.store/29-large_default/filtro-catarata.jpg", precio: "Q. 125.00"),
+    Certificate(id: 3, title: "Escalares", image: "https://oranda.rockfish.store/26-large_default/red-cap.jpg", precio: "Q. 45.00"),
 ]
 
 #if DEBUG
