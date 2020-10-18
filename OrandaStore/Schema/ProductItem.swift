@@ -10,20 +10,32 @@ import SwiftUI
 import Foundation
 import Combine
 
+struct ProductItem2 : View {
+    @Namespace var animacion
+ 
+    var body : some View {
+        
+      
+        ProductItem(data: productos[0], animacion: animacion).previewLayout(.sizeThatFits)
+    }
+}
+
 struct ProductItem: View {
-    var id : Int
-    var title : String
-    var image : String
+    var data : ProductModel!
+ //   var id : Int
+  //  var title : String
+  //  var image : String
     var background = Color.gray
+    var animacion : Namespace.ID
     var body: some View {
       
         VStack(alignment: .center) {
             
-            
-            URLImage(url: image)
+            ZStack {
+                URLImage(url: data.image)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 170, height: 150)
-              
+                    .matchedGeometryEffect(id: data.image, in: animacion)
                
                // .resizable()
          //       .frame(minWidth: 0, maxWidth: 250, minHeight:
@@ -32,9 +44,9 @@ struct ProductItem: View {
              //   .cornerRadius(20)
                // .padding(10)
                 
-        
+            }
            
-                    Text(title)
+            Text(data.title)
                         .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
@@ -69,10 +81,13 @@ struct ProductItem: View {
 }
 
 #if DEBUG
+
+
 struct ProductItem_Previews : PreviewProvider {
+  
     static var previews: some View {
       
-        ProductItem(id: 1,title: "Alimento en Hojuela", image: "https://oranda.rockfish.store/27-large_default/alimento-en-hojuela.jpg").previewLayout(.sizeThatFits)
+        ProductItem2()
     }
 }
 #endif

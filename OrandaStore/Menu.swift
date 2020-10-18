@@ -7,7 +7,18 @@
 //
 
 import SwiftUI
+import Combine
 
+class GlobalInfo : ObservableObject {
+  //  var didChange = PassthroughSubject<Void,Never>()
+    @Published var token = ""
+    @Published var showItemDetail = false
+    @Published var apellidos = "Emilio Castro Aleman" 
+    
+    init(){
+        
+    }
+}
 
 struct Menu : View {
     @State var edges = UIApplication.shared.windows.first?.safeAreaInsets
@@ -26,6 +37,9 @@ struct Menu : View {
     @AppStorage("status1") var logged = false
     @State var search = ""
     @State var swiped = 0
+ //   @State var showItemDetail = false
+    var general = GlobalInfo()
+  
     var body: some View {
         
         ZStack {
@@ -72,118 +86,8 @@ struct Menu : View {
             .padding(.top,edges!.top )
             .background(Color("bg"))
            
-            
-       /*
-            ScrollView(.vertical, showsIndicators: false){
-                VStack{
-                    VStack(spacing: 10){
-                        HStack(spacing: 12){
-                            Image(systemName: "magnifyingglass" )
-                                .font(.title2)
-                                .foregroundColor(Color("orange"))
-                            
-                            TextField("Buscar", text: $search)
-                                .foregroundColor(Color("orange"))
-                            
-                        }
-                        Divider()
-                    }
-                    .padding(.horizontal)
-                    
-                    HStack(alignment: .top){
-                        VStack(alignment: .leading, spacing: 10){
-                            Text("Oranda Red-Cap")
-                                .font(Font.custom("Noteworthy", size: 20.0))
-                                .fontWeight(.heavy)
-                                .foregroundColor(.white)
-                            
-                            Text("Los mejores peces y de alta Calidad")
-                                .fontWeight(.heavy)
-                                .foregroundColor(Color.black.opacity(0.6))
-                                .font(Font.custom("Avenir",size: 10))
-                            
-                            Button(action: {}){
-                                HStack(spacing: 10){
-                                    Text("Informacion")
-                                        .font(.system(size: 10))
-                                        .fontWeight(.heavy)
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: 10, weight: .heavy))
-                                }.foregroundColor(.black)
-                            }
-                        }.padding(.top,30)
-                        .padding(.leading)
-                        
-                        Image("oranda1")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 180)
-                            .offset(x:15, y:-15)
-                    }
-                    .padding()
-                    .background(Color("orange")
-                                    .cornerRadius(30)
-                                    .padding(.bottom,30)
-                                    .padding(.top,30)
-                    )
-                    .padding(.top)
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 15), count: 2), spacing: 20){
-                        
-                        ForEach(items){item in
-                            
-                            ItemView(item: item)
-                            
-                        }
-                    }.padding(.top,10)
-                }
-                .padding()
-                .background(Color(.black))
-            }
-          */
-            /*BANNER
-            ZStack {
-                ForEach(books.reversed()){book in
-                    
-                    HStack{
-                        ZStack{
-                        Image(book.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: width2, height: getHeight(Index: book.id))
-                            .cornerRadius(25)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5)
-                            
-                            CardView2(card: book)
-                                .frame(width: width2, height: getHeight(Index: book.id))
-                        }
-                        .frame(height: height2)
-                        PageViewController(total: books.count, current: $swiped)
-                            .padding(.top, 25)
-                        Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                    }
-                    .contentShape(Rectangle())
-                    .padding(.horizontal, 20)
-                    .offset(x: book.id - swiped < 3 ? CGFloat(book.id - swiped)*30 : 60)
-                    .offset(x: book.offset)
-                    .gesture(DragGesture().onChanged({
-                        (value) in
-                        withAnimation{onScroll(value: value.translation.width, index: book.id)}
-                    })
-                    .onEnded({ (value) in
-                        withAnimation{onEnd(value: value.translation.width, index: book.id)}
-                    })
-                    
-                    )
-                }
-            }
-            
-            //BANNER*/
-            
-          //  Banner()
-            
-           // DetailScroll()
-            HomeList(token: "", apellidos: "Emilio Castro Aleman")
+          
+           HomeList()
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
@@ -266,9 +170,13 @@ struct Menu : View {
          //   .background(Color.white.opacity(show ? 0.3 : 0))
          
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+            
+            
+           
+            
+    }.ignoresSafeArea(.all, edges: .top)
+        .environmentObject(general)
     }
-       
-}
     
     func getHeight(Index: Int)->CGFloat{
         return height2 - (Index - swiped < 3 ? CGFloat(Index - swiped)*40 : 80)
@@ -309,10 +217,10 @@ struct Menu : View {
 }
 
 
-
+let userData = GlobalInfo()
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
-        Menu()
+        Menu().environmentObject(userData)
     }
 }
 

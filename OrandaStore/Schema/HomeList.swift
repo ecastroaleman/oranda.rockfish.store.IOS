@@ -10,19 +10,23 @@
 import SwiftUI
 
 struct HomeList : View {
-    var token: String
+    @EnvironmentObject var info : GlobalInfo
     var slides = productData
-    var apellidos: String
+    @Namespace var animation
     @State var indice = 0
-    
+    @State var showProd = false
+    @State var selectedProd : ProductModel!
+  
     var body: some View {
+        
+        ZStack {
         ScrollView {
            
             VStack{
             HStack {
                 VStack(alignment: .leading) {
                     Text("Bienvenido").font(.largeTitle).fontWeight(.heavy)
-                    Text(self.apellidos).foregroundColor(.gray)
+                    Text(self.info.apellidos).foregroundColor(.gray)
                 }
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 }
@@ -79,20 +83,58 @@ struct HomeList : View {
           
             
        //ec     CourseRow()
-         Divider()
-            ProductoDestacado()
+        
+                Divider()
+                VStack(alignment: .leading){
+                Text("Productos Destacados")
+                    .font(.system(size: 20))
+                    .fontWeight(.heavy)
+                   // .padding(.leading, 20)
+                    .foregroundColor(Color("orange"))
+                }
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        ForEach(productos){prod in
+                            
+                            ProductView(bagData: prod,animation: animation)
+                                .onTapGesture{
+                                    withAnimation(.easeIn){
+                                        selectedProd = prod
+                                        showProd.toggle()
+                                    }
+                                }
+                        }
+                    }
+                }
+                
+         
+                
+                
              
         } //Vstack
+            
+          
+            
         Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }//ScrollView
+            
+           if (selectedProd != nil && showProd) {
+                ProductDetailView(bagData: $selectedProd, show: $showProd, animation: animation)
+               
+            }
+            
+        }//ZStack
     }
     
 }
 
+
 #if DEBUG
+
 struct HomeBack_Previews : PreviewProvider {
     static var previews: some View {
-        HomeList(token: "", apellidos: "Emilio Castro")
+        HomeList()
     }
 }
 #endif
