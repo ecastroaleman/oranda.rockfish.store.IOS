@@ -45,7 +45,7 @@ struct ProductView: View {
                         // .multilineTextAlignment(.trailing)
                       //  .padding(.top,10)
                         
-                    Text("Q. 25.00")
+                Text(bagData.precio)
                         .foregroundColor(Color.white)
                         .font(.system(size: 25))
             }

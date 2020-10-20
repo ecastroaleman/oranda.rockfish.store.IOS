@@ -16,7 +16,7 @@ struct HomeList : View {
     @State var indice = 0
     @State var showProd = false
     @State var selectedProd : ProductModel!
-  
+    @AppStorage("stored_Name") var storedName = ""
     var body: some View {
         
         ZStack {
@@ -26,7 +26,7 @@ struct HomeList : View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Bienvenido").font(.largeTitle).fontWeight(.heavy)
-                    Text(self.info.apellidos).foregroundColor(.gray)
+                    Text(info.apellidos.elementsEqual("") ? storedName : info.apellidos ) .foregroundColor(.gray)
                 }
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                 }
@@ -81,8 +81,6 @@ struct HomeList : View {
             }
         
           
-            
-       //ec     CourseRow()
         
                 Divider()
                 VStack(alignment: .leading){
@@ -102,8 +100,14 @@ struct HomeList : View {
                                     withAnimation(.easeIn){
                                         selectedProd = prod
                                         showProd.toggle()
+                                        print("Cambiando toggle \(showProd)")
+                                        print("Null ? \(selectedProd != nil ? true : false)")
                                     }
                                 }
+                                .sheet(isPresented: $showProd, content: {
+                                    ProductDetailView(selectedProd: $selectedProd, showProd: $showProd, animation: animation)
+                                })
+                                
                         }
                     }
                 }
@@ -119,10 +123,11 @@ struct HomeList : View {
         Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }//ScrollView
             
-           if (selectedProd != nil && showProd) {
-                ProductDetailView(bagData: $selectedProd, show: $showProd, animation: animation)
-               
-            }
+        //    if (info.selectedProd != nil && info.showProd) {
+               // ProductDetailView(bagData: $selectedProd, show: $showProd, animation: animation)
+              // ProductDetailView(animation: animation)
+             //   .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+          //  }
             
         }//ZStack
     }

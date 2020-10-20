@@ -10,8 +10,8 @@ import SwiftUI
 import LocalAuthentication
 
 struct ContentView: View {
+    @EnvironmentObject var general : GlobalInfo
     @AppStorage("status1") var logged = false
-    
     var body: some View {
         
        NavigationView {
@@ -23,15 +23,24 @@ struct ContentView: View {
                 Menu()
                 .preferredColorScheme(.dark)
                 .navigationBarHidden(true)
-            
+                    .edgesIgnoringSafeArea(.all)
+                    .statusBar(hidden: true)
                 
             }else {
                 Home()
                     .preferredColorScheme(.dark)
                     .navigationBarHidden(true)
+                    .edgesIgnoringSafeArea(.all)
+                    .statusBar(hidden: true)
             }
         }
+       .navigationBarHidden(true)
+               .navigationBarBackButtonHidden(true)
+               .navigationBarTitle("", displayMode: .inline)
+               .navigationViewStyle(StackNavigationViewStyle())
+               .statusBar(hidden: true)
     }
+  
 }
 
 struct DropDown : View {
@@ -76,32 +85,19 @@ struct ContentView_Previews: PreviewProvider {
    
     static var previews: some View {
         ContentView()
+            
     }
 }
 
-    struct CustomShape : Shape {
-        @Binding var min : CGFloat
-        func path(in rect: CGRect) -> Path {
-            return Path{ path in
-                path.move(to: CGPoint(x: rect.width, y: 0))
-                path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-                path.addLine(to: CGPoint(x: 35, y: rect.height))
-                path.addLine(to: CGPoint(x: 35, y: 0))
-                path.move(to: CGPoint(x: 35, y: min-15))
-                path.addQuadCurve(to: CGPoint(x: 35, y: min+90), control: CGPoint(x: -35, y: min+35))
-                
-                
-                
-            }
-        }
-    }
-
+   
 struct MenuButtons: View {
+    @EnvironmentObject var general : GlobalInfo
     var image : String
     var title : String
     @Binding var selected : String
     @Binding var show : Bool
     @AppStorage("status1") var logged = false
+    @AppStorage("stored_Name") var storedName = ""
     var body: some View{
         Button(action: {
             withAnimation(.spring()){
@@ -110,8 +106,16 @@ struct MenuButtons: View {
                 
                 if title == "Salir"{
                     print("ES SAlir cambiando a false")
-                    withAnimation(.easeOut){logged.toggle()
-                        logged = false}
+                    withAnimation(.easeOut){
+                        
+                        general.apellidos = ""
+                        general.id_customer = 0
+                        general.token = ""
+                        storedName=""
+                        
+                        logged.toggle()
+                        logged = false
+                        }
                     
                    
                 }
@@ -135,12 +139,13 @@ struct MenuButtons: View {
 }
 
 struct Home : View {
-    
+    @EnvironmentObject var general : GlobalInfo
     @State var userName = "ecastroaleman@gmail.com"
-    @State var password = ""
+    @State var password = "abcd1234"
     @State var viewRecPass = false
     @State var showNewUser =  false
-    @AppStorage("stored_User") var user = "ecastroaleman@gmail.com"
+    @AppStorage("stored_User") var user = ""
+    @AppStorage("stored_Name") var storedName = ""
     @AppStorage("status1") var logged = false
     
     var body: some View{
@@ -160,7 +165,7 @@ struct Home : View {
                             .fontWeight(.bold)
                             .foregroundColor(Color("orange"))
                         
-                        Text("Iniciar sesiòn con su cuenta...")
+                        Text("Iniciar sesión con su cuenta...")
                             .foregroundColor(Color.white.opacity(0.5))
                     })
                     Spacer(minLength: 0)
@@ -205,10 +210,13 @@ struct Home : View {
                     
                     if (userName == "ecastroaleman@gmail.com" && password == "abcd1234"){
                         print ("Logeado")
-                        withAnimation(.easeOut){
-                            logged = true
-                            self.logged.toggle()
-                            }
+                        self.general.apellidos = "Emilio Castro Aleman Login"
+                        self.general.token = "adfañsfadfasjflkjflksjfdlf"
+                        self.general.id_customer = 11
+                        self.general.email = userName
+                        storedName = "Emilio Castro Aleman Login"
+                        user = userName
+                        withAnimation(.easeOut){logged = true}
                         
                     }
                     
@@ -304,7 +312,14 @@ struct Home : View {
                 return
             }
             
-            withAnimation(.easeOut){logged = true}
+            withAnimation(.easeOut){
+                self.general.apellidos = "Emilio Castro Aleman Faceid"
+                self.general.token = "adfañsfadfasjflkjflksjfdlf"
+                self.general.id_customer = 11
+                self.general.email = userName
+                user = userName
+                storedName = "Emilio Castro Aleman Faceid"
+                logged = true}
         }
     }
 }

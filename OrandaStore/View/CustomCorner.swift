@@ -29,3 +29,19 @@ struct CustomCorner2: Shape {
         return Path(path.cgPath)
     }
 }
+struct CustomShape : Shape {
+    @Binding var min : CGFloat
+    func path(in rect: CGRect) -> Path {
+        return Path{ path in
+            path.move(to: CGPoint(x: rect.width, y: 0))
+            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+            path.addLine(to: CGPoint(x: 35, y: rect.height))
+            path.addLine(to: CGPoint(x: 35, y: 0))
+            path.move(to: CGPoint(x: 35, y: min-15))
+            path.addQuadCurve(to: CGPoint(x: 35, y: min+90), control: CGPoint(x: -35, y: min+35))
+            
+            
+            
+        }
+    }
+}

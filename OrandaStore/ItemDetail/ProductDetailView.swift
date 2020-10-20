@@ -20,10 +20,11 @@ struct ProductDetailView2: View {
 }*/
 
 struct ProductDetailView: View {
-    @Binding var bagData : ProductModel!
-   // @State var bagData : ProductModel!
-    @Binding var show : Bool
-   // @State var show : Bool
+    @EnvironmentObject var info : GlobalInfo
+    @Binding var selectedProd : ProductModel!
+//    @State var selectedProd : ProductModel!
+    @Binding var showProd : Bool
+//    @State var showProd : Bool
     var animation : Namespace.ID
     @State var selectedColor = Color("bg")
     @State var totalProd = 1
@@ -32,7 +33,7 @@ struct ProductDetailView: View {
             HStack{
                 VStack(alignment: .leading, spacing: 5){
                     Button(action:{
-                        withAnimation(.easeOut){show.toggle()}
+                        withAnimation(.easeOut){showProd.toggle()}
                         
                     }){
                         Image(systemName: "chevron.left")
@@ -47,7 +48,7 @@ struct ProductDetailView: View {
                         .padding(.top)
                         Spacer()
                     Button(action:{
-                        withAnimation(.easeOut){show.toggle()}
+                        withAnimation(.easeOut){showProd.toggle()}
                         
                     }){
                         Image(systemName: "cart")
@@ -55,7 +56,7 @@ struct ProductDetailView: View {
                             .foregroundColor(Color("orange"))
                     }
                     }
-                    Text(bagData.title)
+                    Text(selectedProd.title)
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
@@ -64,8 +65,8 @@ struct ProductDetailView: View {
                         Text("Precio")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        Text(bagData.precio)
-                            .font(.largeTitle)
+                        Text(selectedProd.precio)
+                            .font(.title)
                             .fontWeight(.heavy)
                             .foregroundColor(.white)
                         
@@ -84,12 +85,12 @@ struct ProductDetailView: View {
             HStack(){
                
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                URLImage(url: bagData.image)
+                URLImage(url: selectedProd.image)
                     .aspectRatio(contentMode: .fit)
-                    .matchedGeometryEffect(id: bagData.image, in: animation)
+                    .matchedGeometryEffect(id: selectedProd.image, in: animation)
                     .cornerRadius(20)
                     .frame(width: 220, height: 200)
-                    .position(x: UIScreen.main.bounds.width - 165,y: 40)
+                    .position(x: UIScreen.main.bounds.width - 150,y: 5)
                    
             }
            // .padding()
@@ -115,11 +116,12 @@ struct ProductDetailView: View {
                    
                 }
                 .padding(.horizontal)
-                .padding(.top, -100)
+                .padding(.top, -80)
                 
                 Divider()
+                    .padding(.top, -80)
                infoProdDet(titulo: "Alimento Tipo Hojuela", valor: "")
-                
+                .padding(.top, -70)
                 Divider()
                 HStack{
                     Text("Informaciòn del Producto")
@@ -181,7 +183,7 @@ struct ProductDetailView: View {
                 
              //   Spacer()
             }
-            .background(Color.white.clipShape(CustomCorner2()).padding(.top,-180))
+            .background(Color.white.clipShape(CustomCorner2()).padding(.top,-160))
             .zIndex(0)
         }
        .background(selectedColor.ignoresSafeArea(.all, edges: .top))
