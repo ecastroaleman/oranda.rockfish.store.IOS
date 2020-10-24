@@ -14,7 +14,6 @@ class GlobalInfo : ObservableObject {
     @Published var apellidos = ""
     @Published var id_customer = 0
     @Published var email = ""
-    
     init(){
         
     }

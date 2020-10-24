@@ -51,9 +51,23 @@ struct ProductDetailView: View {
                         withAnimation(.easeOut){showProd.toggle()}
                         
                     }){
+                        ZStack{
                         Image(systemName: "cart")
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color("orange"))
+                            
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 10, height: 10)
+                                .offset(x: 14, y: -10)
+                            
+                            Text("1")
+                                .fontWeight(.heavy)
+                                .foregroundColor(Color.white)
+                                .offset(x: 14, y: -10)
+                                .font(.system(size: 7))
+                               
+                        }
                     }
                     }
                     Text(selectedProd.title)
@@ -103,7 +117,15 @@ struct ProductDetailView: View {
                     VStack(alignment: .leading, spacing: 8){
                         Text("Seleccione Peso")
                             .foregroundColor(.gray)
-                        
+                        VStack{
+                            HStack{
+                                Spacer()
+                                ListaAtributos(tipo: "<Seleccione Peso>")
+                                
+                            }
+                            //.padding(.leading, -100)
+                        }
+                       
                         
                      /*   HStack(spacing: 15){
                             ColorButton(color: Color(bagData.image), selectedColor: $selectedColor)
@@ -191,6 +213,66 @@ struct ProductDetailView: View {
    //     .onAppear{
     //        selectedColor = Color("bg")
      //   }
+    }
+}
+
+struct ListaAtributos: View {
+    @State var tipo : String
+    @State var expand = false
+    var body : some View {
+        
+        VStack(){
+            Spacer()
+            VStack(spacing: 30){
+                HStack(){
+                    Text(tipo)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                    Image(systemName: expand ? "chevron.up" : "chevron.down")
+                        .resizable()
+                        .frame(width: 13, height: 6)
+                        .foregroundColor(.black)
+                }.onTapGesture {
+                    self.expand.toggle()
+                }
+                
+                if expand {
+                    Button(action: {
+                        print("1")
+                        self.expand.toggle()
+                    }){
+                        Text("8oz")
+                            .padding()
+                        
+                    }.foregroundColor(.black)
+                    
+                    Button(action: {
+                        print("0.5 Lb")
+                        self.expand.toggle()
+                    }){
+                        Text("8oz")
+                            .padding()
+                        
+                    }.foregroundColor(.black)
+                    
+                    Button(action: {
+                        print("3")
+                        self.expand.toggle()
+                    }){
+                        Text("1 Lb")
+                            .padding()
+                        
+                    }.foregroundColor(.black)
+                    
+                }
+            }
+            .padding()
+            .background(LinearGradient(gradient: .init(colors: [.blue, .purple]), startPoint:  .top, endPoint:  .bottom))
+            .cornerRadius(15)
+            .shadow(color: .gray, radius: 5)
+            .animation(.spring())
+        }
+            
     }
 }
 

@@ -23,3 +23,14 @@ struct nUserResponse: Decodable {
     
 }
 }
+
+
+//Estructura para los Banner de Inicio
+struct Sliders: Codable{
+    var Slides: [SlidersInfo]
+}
+struct SlidersInfo: Codable, Identifiable, Hashable {
+    var id: String
+    var title: String
+    var url_image: String
+}

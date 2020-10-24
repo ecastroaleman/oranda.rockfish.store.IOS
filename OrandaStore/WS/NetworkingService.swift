@@ -22,15 +22,6 @@ class NetworkingService {
             return
         }
         
-    /*    let body: [String: String] = ["id_gender" : "1",
-                                      "firstname" : "ecastro",
-                                      "lastname" : "aleman",
-                                      "birthday" : "1980-01-01",
-                                      "passwd" : "asdff",
-                                      "email" : "paunhdp@gmail.com",
-                                      "newsletter" : "1",
-                                      "optin" : "1"]*/
-        
         
         let finalBody = try! JSONSerialization.data(withJSONObject: parameters)
         

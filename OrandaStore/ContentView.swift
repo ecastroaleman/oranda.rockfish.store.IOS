@@ -12,6 +12,7 @@ import LocalAuthentication
 struct ContentView: View {
     @EnvironmentObject var general : GlobalInfo
     @AppStorage("status1") var logged = false
+    @StateObject var model = SlidersList()
     var body: some View {
         
        NavigationView {
@@ -20,7 +21,7 @@ struct ContentView: View {
         
         if logged {
             
-                Menu()
+            Menu(model: model)
                 .preferredColorScheme(.dark)
                 .navigationBarHidden(true)
                     .edgesIgnoringSafeArea(.all)
@@ -147,7 +148,7 @@ struct Home : View {
     @AppStorage("stored_User") var user = ""
     @AppStorage("stored_Name") var storedName = ""
     @AppStorage("status1") var logged = false
-    
+   
     var body: some View{
     
             VStack{
@@ -251,7 +252,6 @@ struct Home : View {
                 
                 
                 Button(action: {
-                    
                     viewRecPass.toggle()
                     
                 }, label: {

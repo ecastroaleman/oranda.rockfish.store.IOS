@@ -8,15 +8,22 @@
 
 
 import SwiftUI
+import Foundation
+
+
+
 
 struct HomeList : View {
     @EnvironmentObject var info : GlobalInfo
-    var slides = productData
+ //   var slides = productData
     @Namespace var animation
     @State var indice = 0
     @State var showProd = false
     @State var selectedProd : ProductModel!
     @AppStorage("stored_Name") var storedName = ""
+//    let networkingService = getSlides()
+    @StateObject var model = SlidersList()
+    
     var body: some View {
         
         ZStack {
@@ -37,8 +44,42 @@ struct HomeList : View {
                 HStack() {
                    
                     //Cursos Cocurriculares 0
-                    GeometryReader { geometry in
-                        Button(action: {})
+                  
+                /*    ForEach (0 ... model.posts.count, id: \.self) {okk in
+                     //   Text(" imprimiendo -> \(model.posts[okk].Slides[0].title)")
+                        Text("Infor -> \(okk)")
+                    }*/
+                    
+                 //   ForEach (info.iniSliders.posts, id: \.Slides) { sdata1 in
+                    ForEach (model.posts, id: \.Slides) { sdata1 in
+                        ForEach (sdata1.Slides) { sdata in
+                        
+                        GeometryReader { geometry in
+                            Button(action: {
+                              //  print(model.posts[0].Slides[0].title)
+                                print("Esto no lo pinta -> \(model.posts[0].Slides[0].title)")
+                            })
+                            {
+                                SlideView(slides: sdata)
+                                    .rotation3DEffect(Angle(degrees: Double(
+                                        (geometry.frame(in: .global).minX - 30) / -30
+                                    )), axis: (x: 0, y: 10, z: 0))
+                                   
+                                   
+                            }
+                            
+                        }//Geometry
+                        .frame(width: 246, height: 100)
+                        
+                        }
+                    }
+                   
+                    
+                  /*  GeometryReader { geometry in
+                        Button(action: {
+                          //  print(model.posts[0].Slides[0].title)
+                            print(model.posts[0].Slides[0].title)
+                        })
                         {
                             SlideView(slides: self.slides[0])
                                 .rotation3DEffect(Angle(degrees: Double(
@@ -72,7 +113,7 @@ struct HomeList : View {
                                    
                                            }
                                        }//Geometry
-                    .frame(width: 246, height: 100)
+                    .frame(width: 246, height: 100)*/
                     //3
             
                   
@@ -131,19 +172,20 @@ struct HomeList : View {
             
         }//ZStack
     }
+   
     
 }
 
 
 #if DEBUG
-
+/*
 struct HomeBack_Previews : PreviewProvider {
     static var previews: some View {
         HomeList()
     }
-}
+}*/
 #endif
-
+/*
 struct Slides : Identifiable {
     var id = UUID()
     var index: Int
@@ -151,6 +193,7 @@ struct Slides : Identifiable {
     var shadowColor: Color
     var urlImage: String
 }
+
 
 let productData = [
     Slides(index: 0, title: "Peces y Mas...",
@@ -160,18 +203,18 @@ let productData = [
     Slides(index: 2, title: "Calidad y Buen Precio",
            shadowColor: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5), urlImage: "https://oranda.rockfish.store/modules/ps_imageslider/images/e20a9822585bc0d7ebcd7ed21139c99314b4180a_oranda.png")
 ]
-
+*/
 struct SlideView : View {
-    var slides = Slides(index: -1, title: "", shadowColor: Color.black, urlImage: "")
-    
+   // var slides = Slides(index: -1, title: "", shadowColor: Color.black, urlImage: "")
+    var slides : SlidersInfo
     var body: some View {
         return VStack(alignment: .leading) {
            
             VStack(alignment: .leading){
-                
-                URLImage(url: slides.urlImage)
+              
+                URLImage(url: slides.url_image)
                     .aspectRatio(contentMode: .fit)
-                    .shadow(color: slides.shadowColor, radius: 7, x: 0, y: 20)
+                    .shadow(color: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5), radius: 7, x: 0, y: 20)
                 
                 
             Text(slides.title)
