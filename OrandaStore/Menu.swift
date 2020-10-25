@@ -22,8 +22,6 @@ struct Menu : View {
     @AppStorage("status1") var logged = false
     @State var search = ""
     @Namespace var animation
-    @StateObject var model : SlidersList
- //   @State var showItemDetail = false
     var body: some View {
         
         ZStack {
@@ -71,8 +69,8 @@ struct Menu : View {
             .background(Color("bg"))
            
           
-            HomeList(model: model)
-              
+            HomeList()
+               
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }

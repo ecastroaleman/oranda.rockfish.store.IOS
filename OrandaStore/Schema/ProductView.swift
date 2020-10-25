@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/*
 struct ProductView2: View{
     @Namespace var animation
     var body : some View {
@@ -15,10 +16,10 @@ struct ProductView2: View{
         
         ProductView(bagData: productos[2], animation: animation)
     }
-}
+}*/
 
 struct ProductView: View {
-    var bagData : ProductModel
+    var bagData : PDDatosEnc
     var animation : Namespace.ID
     var body: some View {
         
@@ -27,17 +28,17 @@ struct ProductView: View {
              //   Color("orange")
                //     .cornerRadius(15)
                 
-                URLImage(url: bagData.image)
+                URLImage(url: bagData.imagen)
               //  Image(bagData.image).resizable()
                     .aspectRatio(contentMode: .fill)
                   //  .frame(width: 150, height: 200)
                     .frame(minWidth: 150, idealWidth: 150, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 200, idealHeight: 200, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     //.padding(2)
-                    .matchedGeometryEffect(id: bagData.id, in: animation)
+                    .matchedGeometryEffect(id: bagData.id_product, in: animation)
             }
             
             VStack(spacing: 10){
-            Text(bagData.title)
+                Text(bagData.name)
                         .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
@@ -45,7 +46,7 @@ struct ProductView: View {
                         // .multilineTextAlignment(.trailing)
                       //  .padding(.top,10)
                         
-                Text(bagData.precio)
+                Text(bagData.price)
                         .foregroundColor(Color.white)
                         .font(.system(size: 25))
             }
@@ -58,9 +59,10 @@ struct ProductView: View {
     }
 }
 
-
+/*
 struct ProductView_Previews: PreviewProvider {
     static var previews: some View {
         ProductView2()
     }
 }
+*/

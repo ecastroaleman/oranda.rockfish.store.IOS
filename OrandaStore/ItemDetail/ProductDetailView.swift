@@ -21,7 +21,7 @@ struct ProductDetailView2: View {
 
 struct ProductDetailView: View {
     @EnvironmentObject var info : GlobalInfo
-    @Binding var selectedProd : ProductModel!
+    @Binding var selectedProd : PDDatosEnc!
 //    @State var selectedProd : ProductModel!
     @Binding var showProd : Bool
 //    @State var showProd : Bool
@@ -70,7 +70,7 @@ struct ProductDetailView: View {
                         }
                     }
                     }
-                    Text(selectedProd.title)
+                    Text(selectedProd.name)
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
@@ -79,7 +79,7 @@ struct ProductDetailView: View {
                         Text("Precio")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        Text(selectedProd.precio)
+                        Text(selectedProd.price)
                             .font(.title)
                             .fontWeight(.heavy)
                             .foregroundColor(.white)
@@ -99,9 +99,9 @@ struct ProductDetailView: View {
             HStack(){
                
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-                URLImage(url: selectedProd.image)
+                URLImage(url: selectedProd.imagen)
                     .aspectRatio(contentMode: .fit)
-                    .matchedGeometryEffect(id: selectedProd.image, in: animation)
+                    .matchedGeometryEffect(id: selectedProd.imagen, in: animation)
                     .cornerRadius(20)
                     .frame(width: 220, height: 200)
                     .position(x: UIScreen.main.bounds.width - 150,y: 5)

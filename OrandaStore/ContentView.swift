@@ -12,7 +12,6 @@ import LocalAuthentication
 struct ContentView: View {
     @EnvironmentObject var general : GlobalInfo
     @AppStorage("status1") var logged = false
-    @StateObject var model = SlidersList()
     var body: some View {
         
        NavigationView {
@@ -21,7 +20,7 @@ struct ContentView: View {
         
         if logged {
             
-            Menu(model: model)
+            Menu()
                 .preferredColorScheme(.dark)
                 .navigationBarHidden(true)
                     .edgesIgnoringSafeArea(.all)
@@ -212,7 +211,7 @@ struct Home : View {
                     if (userName == "ecastroaleman@gmail.com" && password == "abcd1234"){
                         print ("Logeado")
                         self.general.apellidos = "Emilio Castro Aleman Login"
-                        self.general.token = "adfañsfadfasjflkjflksjfdlf"
+                        self.general.token = "b327c71c543046750be27434316525bb626413c4"
                         self.general.id_customer = 11
                         self.general.email = userName
                         storedName = "Emilio Castro Aleman Login"

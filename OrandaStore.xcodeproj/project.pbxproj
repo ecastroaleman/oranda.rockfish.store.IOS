@@ -25,12 +25,15 @@
 		DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79825200954002F182A /* PasswordRecovery.swift */; };
 		DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79B2520327D002F182A /* NuevoUsuario.swift */; };
 		DD71040D2523E05100FA673A /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71040C2523E05100FA673A /* Temporal.swift */; };
+		DD77787D254515310006A6CE /* getInfoWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77787C254515310006A6CE /* getInfoWS.swift */; };
+		DD777880254522970006A6CE /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77787F254522970006A6CE /* ProductList.swift */; };
 		DD82234D251AD56A0057D7D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82234C251AD56A0057D7D3 /* AppDelegate.swift */; };
 		DD82234F251AD56A0057D7D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */; };
 		DD822351251AD56A0057D7D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD822350251AD56A0057D7D3 /* ContentView.swift */; };
 		DD822353251AD56D0057D7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822352251AD56D0057D7D3 /* Assets.xcassets */; };
 		DD822356251AD56D0057D7D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */; };
 		DD822359251AD56D0057D7D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD822357251AD56D0057D7D3 /* LaunchScreen.storyboard */; };
+		DDF7F4D72544B1C100BB9338 /* LogOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7F4D62544B1C100BB9338 /* LogOutView.swift */; };
 		DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF092522D39400D2DBAD /* NetworkingService.swift */; };
 		DDFADF0E2522D3F500D2DBAD /* nUsuarioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */; };
 		DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */; };
@@ -55,6 +58,8 @@
 		DD56B79825200954002F182A /* PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecovery.swift; sourceTree = "<group>"; };
 		DD56B79B2520327D002F182A /* NuevoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuario.swift; sourceTree = "<group>"; };
 		DD71040C2523E05100FA673A /* Temporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
+		DD77787C254515310006A6CE /* getInfoWS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getInfoWS.swift; sourceTree = "<group>"; };
+		DD77787F254522970006A6CE /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 		DD822349251AD56A0057D7D3 /* OrandaStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrandaStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD82234C251AD56A0057D7D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD82234E251AD56A0057D7D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 		DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD822358251AD56D0057D7D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD82235A251AD56D0057D7D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF7F4D62544B1C100BB9338 /* LogOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
 		DDFADF092522D39400D2DBAD /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nUsuarioResponse.swift; sourceTree = "<group>"; };
 		DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nUsuarioErrorResponse.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 				DD386CD125280D5C00384EAE /* CustomCorner.swift */,
 				DD51264E2529305E0056B4C2 /* Banner.swift */,
 				DD2C5B1B252EA3610071C05D /* ActivityIndicator.swift */,
+				DDF7F4D62544B1C100BB9338 /* LogOutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -121,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				DD50C9E825428D4B003BEBD0 /* SlidersList.swift */,
+				DD77787F254522970006A6CE /* ProductList.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 				DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */,
 				DDFADF102522D42400D2DBAD /* nUsuarioErrorResponse.swift */,
 				DD017444253FDD980077F279 /* getSlides.swift */,
+				DD77787C254515310006A6CE /* getInfoWS.swift */,
 			);
 			path = WS;
 			sourceTree = "<group>";
@@ -268,6 +277,7 @@
 				DD1A1231253F79FA008B1149 /* ProductOverview.swift in Sources */,
 				DD39453B253BFB93003C00DC /* ProductView.swift in Sources */,
 				DD82234D251AD56A0057D7D3 /* AppDelegate.swift in Sources */,
+				DD777880254522970006A6CE /* ProductList.swift in Sources */,
 				DD82234F251AD56A0057D7D3 /* SceneDelegate.swift in Sources */,
 				DD017445253FDD980077F279 /* getSlides.swift in Sources */,
 				DD2C5B1C252EA3610071C05D /* ActivityIndicator.swift in Sources */,
@@ -282,6 +292,8 @@
 				DD71040D2523E05100FA673A /* Temporal.swift in Sources */,
 				DD077B902530D160008BC1FB /* ImageLoader.swift in Sources */,
 				DD1A122E253F77F6008B1149 /* ProductDetailView2.swift in Sources */,
+				DDF7F4D72544B1C100BB9338 /* LogOutView.swift in Sources */,
+				DD77787D254515310006A6CE /* getInfoWS.swift in Sources */,
 				DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */,
 				DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */,
 				DD51264F2529305E0056B4C2 /* Banner.swift in Sources */,

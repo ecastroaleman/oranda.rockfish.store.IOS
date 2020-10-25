@@ -34,3 +34,28 @@ struct SlidersInfo: Codable, Identifiable, Hashable {
     var title: String
     var url_image: String
 }
+
+//Estructura para los productos Destacados
+
+struct PDestacado: Codable{
+    var resultado: String
+    var Datos: [PDDatosEnc]
+}
+
+struct PDDatosEnc: Codable, Hashable {
+    var id_product: String
+    var name: String
+    var price: String
+    var reference: String
+    var condition: String
+    var Atributos: String
+    var imagen: String
+    var DetalleAtributos: [PDDatosDet]?? 
+}
+
+struct PDDatosDet: Codable, Hashable {
+    var id_product_attribute: String
+    var name: String
+    var price: String
+    var quantity: String
+}

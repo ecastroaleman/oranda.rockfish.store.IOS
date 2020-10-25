@@ -20,10 +20,11 @@ struct HomeList : View {
     @State var indice = 0
     @State var showProd = false
     @State var selectedProd : ProductModel!
+    @State var selectedProd2 : PDDatosEnc!
     @AppStorage("stored_Name") var storedName = ""
 //    let networkingService = getSlides()
     @StateObject var model = SlidersList()
-    
+    @StateObject var modelPD = ProductList()
     var body: some View {
         
         ZStack {
@@ -51,6 +52,10 @@ struct HomeList : View {
                     }*/
                     
                  //   ForEach (info.iniSliders.posts, id: \.Slides) { sdata1 in
+                    
+                  
+                    
+                    
                     ForEach (model.posts, id: \.Slides) { sdata1 in
                         ForEach (sdata1.Slides) { sdata in
                         
@@ -58,13 +63,20 @@ struct HomeList : View {
                             Button(action: {
                               //  print(model.posts[0].Slides[0].title)
                                 print("Esto no lo pinta -> \(model.posts[0].Slides[0].title)")
+                                
+                                if (model.mensajeResp != "OK"){
+                                    print(model.mensajeResp)
+                                }else{
+                                    print(model.mensajeResp)
+                                }
+                                
                             })
                             {
                                 SlideView(slides: sdata)
                                     .rotation3DEffect(Angle(degrees: Double(
                                         (geometry.frame(in: .global).minX - 30) / -30
                                     )), axis: (x: 0, y: 10, z: 0))
-                                   
+                                    
                                    
                             }
                             
@@ -134,22 +146,42 @@ struct HomeList : View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
-                        ForEach(productos){prod in
+                        
+                        
+                        //   ForEach (model.posts, id: \.Slides) { sdata1 in
+                    //    ForEach (sdata1.Slides) { sdata in
+                        
+                        ForEach(modelPD.postsPD, id: \.Datos) { sdato1 in
+                            ForEach(sdato1.Datos, id: \.id_product) { sdato2 in
+                            
+                            ProductView(bagData: sdato2,animation: animation)
+                                .onTapGesture{
+                                    withAnimation(.easeIn){
+                                        selectedProd2 = sdato2
+                                        showProd.toggle()
+                                    }
+                                }
+                                .sheet(isPresented: $showProd, content: {
+                                    ProductDetailView(selectedProd: $selectedProd2, showProd: $showProd, animation: animation)
+                                })
+                            
+                        }
+                        }
+                        
+                   /*     ForEach(productos){prod in
                             
                             ProductView(bagData: prod,animation: animation)
                                 .onTapGesture{
                                     withAnimation(.easeIn){
                                         selectedProd = prod
                                         showProd.toggle()
-                                        print("Cambiando toggle \(showProd)")
-                                        print("Null ? \(selectedProd != nil ? true : false)")
                                     }
                                 }
                                 .sheet(isPresented: $showProd, content: {
                                     ProductDetailView(selectedProd: $selectedProd, showProd: $showProd, animation: animation)
                                 })
                                 
-                        }
+                        }*/
                     }
                 }
                 
@@ -172,7 +204,7 @@ struct HomeList : View {
             
         }//ZStack
     }
-   
+    
     
 }
 
