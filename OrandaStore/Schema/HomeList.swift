@@ -55,7 +55,7 @@ struct HomeList : View {
                     
                   
                     
-                    
+                
                     ForEach (model.posts, id: \.Slides) { sdata1 in
                         ForEach (sdata1.Slides) { sdata in
                         
@@ -85,7 +85,8 @@ struct HomeList : View {
                         
                         }
                     }
-                   
+                    //}//.frame(width: UIScreen.main.bounds.width)
+                   // .tabViewStyle(PageTabViewStyle())
                     
                   /*  GeometryReader { geometry in
                         Button(action: {
@@ -162,7 +163,8 @@ struct HomeList : View {
                                     }
                                 }
                                 .sheet(isPresented: $showProd, content: {
-                                    ProductDetailView(selectedProd: $selectedProd2, showProd: $showProd, animation: animation)
+                                  // ProductDetailView(selectedProd: $selectedProd2, showProd: $showProd, animation: animation)
+                                    ProductDetailView2(selectedProd: $selectedProd2, showProd: $showProd, animation: animation)
                                 })
                             
                         }
@@ -244,7 +246,8 @@ struct SlideView : View {
            
             VStack(alignment: .leading){
               
-                URLImage(url: slides.url_image)
+            //    URLImage(url: slides.url_image)
+                UrlImageView(urlString: slides.url_image)
                     .aspectRatio(contentMode: .fit)
                     .shadow(color: Color(hue: 0.677, saturation: 0.701, brightness: 0.788, opacity: 0.5), radius: 7, x: 0, y: 20)
                 

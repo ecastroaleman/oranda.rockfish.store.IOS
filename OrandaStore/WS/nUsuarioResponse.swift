@@ -50,7 +50,7 @@ struct PDDatosEnc: Codable, Hashable {
     var condition: String
     var Atributos: String
     var imagen: String
-    var DetalleAtributos: [PDDatosDet]?? 
+    var DetalleAtributos: [PDDatosDet]?
 }
 
 struct PDDatosDet: Codable, Hashable {

@@ -28,7 +28,8 @@ struct ProductView: View {
              //   Color("orange")
                //     .cornerRadius(15)
                 
-                URLImage(url: bagData.imagen)
+             //   URLImage(url: bagData.imagen)
+                UrlImageView(urlString: bagData.imagen)
               //  Image(bagData.image).resizable()
                     .aspectRatio(contentMode: .fill)
                   //  .frame(width: 150, height: 200)

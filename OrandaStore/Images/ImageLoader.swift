@@ -9,8 +9,21 @@ import SwiftUI
 
 class ImageLoader: ObservableObject {
     @Published var downloadedData: Data?
+ //   var urlString : String?
+  //  var imageCache = ImageCache.getImageCache()
     
-    
+/*    func loadImageFromCache() -> Bool {
+        guard let urlString = urlString else {
+            return false
+        }
+        
+        guard let cacheImage = imageCache.get(forKey: urlString) else {
+            return false
+        }
+        
+        downloadedData = cacheImage
+        return true
+    }*/
     func downloadImage(url: String){
         guard let imageURL = URL(string: url ) else {
             return
@@ -29,25 +42,5 @@ class ImageLoader: ObservableObject {
     }
     
    
-}
-
-
-class ImageCache {
-    var cache = NSCache<NSString, UIImage>()
-
-    func get(forKey: String) -> UIImage? {
-        return cache.object(forKey: NSString(string: forKey))
-    }
-
-    func set(forKey: String, image: UIImage) {
-        cache.setObject(image, forKey: NSString(string: forKey))
-    }
-}
-
-extension ImageCache {
-    private static var imageCache = ImageCache()
-    static func getImageCache() -> ImageCache {
-        return imageCache
-    }
 }
 
