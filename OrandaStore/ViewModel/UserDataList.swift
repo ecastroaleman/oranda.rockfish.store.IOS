@@ -1,4 +1,14 @@
 //
+//  UserDataList.swift
+//  OrandaStore
+//
+//  Created by Emilio Castro on 10/30/20.
+//  Copyright © 2020 Emilio Castro. All rights reserved.
+//
+
+import Foundation
+
+//
 //  ProductList.swift
 //  OrandaStore
 //
@@ -10,14 +20,14 @@ import SwiftUI
 import Combine
 import Foundation
 
-final class ProductList : ObservableObject{
+final class UserDataList : ObservableObject{
     
     init(){
        
-        fetchPostsPD()
+        fetchUserDataList()
     }
     
-  @Published var postsPD = [PDestacado]() {
+  @Published var postsPD = [UserLogeado]() {
         didSet {
             didChange.send(self)
         }
@@ -27,11 +37,10 @@ final class ProductList : ObservableObject{
         didChange.send(self)
     }
 }
-    public func fetchPostsPD(){
-        getInfoWS(tipo: "ProductoDestacado").getProductoDestacado{retPD, resPD in
+    public func fetchUserDataList(){
+        getInfoWS(tipo: "ProductoDestacado").getMenu(pusuario: "emilio.castro.aleman@ericsson.com", pclave: "abcd1234"){retPD, resPD in
          //   print("Si trae dato PD -> \(retPD.Datos[0].name)")
             print("Mensaje dato PD es ->\(resPD)")
-            print("Imagen \(retPD.Datos[0].imagen)")
             self.postsPD = [retPD]
             self.mensajeRespPD = resPD
             return
@@ -42,5 +51,5 @@ final class ProductList : ObservableObject{
     
    
      
-    let didChange = PassthroughSubject<ProductList, Never>()
+    let didChange = PassthroughSubject<UserDataList, Never>()
 }

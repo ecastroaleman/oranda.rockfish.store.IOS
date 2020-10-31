@@ -140,7 +140,7 @@ struct MenuButtons: View {
 
 struct Home : View {
     @EnvironmentObject var general : GlobalInfo
-    @State var userName = "ecastroaleman@gmail.com"
+    @State var userName = "emilio.castro.aleman@ericsson.com"
     @State var password = "abcd1234"
     @State var viewRecPass = false
     @State var showNewUser =  false
@@ -208,7 +208,33 @@ struct Home : View {
                     print("user -> \(userName)")
                     print("pass -> \(password)")
                     
-                    if (userName == "ecastroaleman@gmail.com" && password == "abcd1234"){
+                    print("Llamando al WS")
+                    
+                    getInfoWS(tipo: "Login").getMenu(pusuario: userName, pclave: password){retPD, resPD in
+                     //   print("Si trae dato PD -> \(retPD.Datos[0].name)")
+                        print("Mensaje dato PD es ->\(resPD)")
+                        print("Datos -> \(retPD.access_token)")
+                
+                        if (resPD != "OK"){
+                            print("Error de Login")
+                        }else{
+                            
+                            self.general.apellidos = retPD.firstname+" "+retPD.lastname
+                            self.general.token = retPD.access_token
+                            self.general.id_customer = Int(retPD.id_customer)!
+                            self.general.email = userName
+                            storedName = retPD.firstname+" "+retPD.lastname
+                            user = userName
+                            withAnimation(.easeOut){logged = true}
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+               /*     if (userName == "ecastroaleman@gmail.com" && password == "abcd1234"){
                         print ("Logeado")
                         self.general.apellidos = "Emilio Castro Aleman Login"
                         self.general.token = "b327c71c543046750be27434316525bb626413c4"
@@ -218,7 +244,7 @@ struct Home : View {
                         user = userName
                         withAnimation(.easeOut){logged = true}
                         
-                    }
+                    }*/
                     
                     
                     

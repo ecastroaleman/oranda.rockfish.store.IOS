@@ -85,49 +85,7 @@ struct HomeList : View {
                         
                         }
                     }
-                    //}//.frame(width: UIScreen.main.bounds.width)
-                   // .tabViewStyle(PageTabViewStyle())
-                    
-                  /*  GeometryReader { geometry in
-                        Button(action: {
-                          //  print(model.posts[0].Slides[0].title)
-                            print(model.posts[0].Slides[0].title)
-                        })
-                        {
-                            SlideView(slides: self.slides[0])
-                                .rotation3DEffect(Angle(degrees: Double(
-                                    (geometry.frame(in: .global).minX - 30) / -30
-                                )), axis: (x: 0, y: 10, z: 0))
-                               
-                        }
-                    }//Geometry
-                    .frame(width: 246, height: 100)
                    
-                    //1
-                    GeometryReader { geometry in
-                                           Button(action: {})
-                                           {
-                                               SlideView(slides: self.slides[1])
-                                                   .rotation3DEffect(Angle(degrees: Double(
-                                                       (geometry.frame(in: .global).minX - 30) / -30
-                                                   )), axis: (x: 0, y: 10, z: 0))
-                                   
-                                           }
-                                       }//Geometry
-                    .frame(width: 246, height: 100)
-                    // 2
-                    GeometryReader { geometry in
-                                           Button(action: {})
-                                           {
-                                               SlideView(slides: self.slides[2])
-                                                   .rotation3DEffect(Angle(degrees: Double(
-                                                       (geometry.frame(in: .global).minX - 30) / -30
-                                                   )), axis: (x: 0, y: 10, z: 0))
-                                   
-                                           }
-                                       }//Geometry
-                    .frame(width: 246, height: 100)*/
-                    //3
             
                   
                 }.padding(5)
@@ -148,9 +106,6 @@ struct HomeList : View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         
-                        
-                        //   ForEach (model.posts, id: \.Slides) { sdata1 in
-                    //    ForEach (sdata1.Slides) { sdata in
                         
                         ForEach(modelPD.postsPD, id: \.Datos) { sdato1 in
                             ForEach(sdato1.Datos, id: \.id_product) { sdato2 in

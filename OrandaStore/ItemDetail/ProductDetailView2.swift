@@ -31,15 +31,22 @@ struct ProductDetailView2: View {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(alignment: .leading) {
                     
-                    ZStack {
+                    ZStack(alignment: .center) {
                       //  URLImage(url: selectedProd.imagen)
+                        HStack(alignment: .center){
+                            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
                         UrlImageView(urlString: selectedProd.imagen)
-                          //  .frame(minWidth: 200, idealWidth: 200, maxWidth: .infinity, minHeight: 100, idealHeight: 100, maxHeight: .infinity)
-                            .scaledToFill()
-                        
+                            .frame(minWidth: 200, idealWidth: UIScreen.screenWidth, maxWidth: .infinity,
+                                   minHeight: 200, idealHeight: 220, maxHeight: 250, alignment: .center)
+                            .aspectRatio(1, contentMode: .fit)
+                            .cornerRadius(15)
+                            .shadow(color: .gray, radius: 5, x: -5, y: 5)
+                       //     .scaledToFill()
+                        Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+                        }
                     }
                        // .rotationEffect(.degrees(90))
-                        .offset(y : -50)
+                      //  .offset(y : -10)
                         
                     
                     Group {
@@ -206,7 +213,10 @@ struct ProductDetailView2: View {
             
             VStack(){
                 Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-            Button(action:{}){
+            Button(action:{
+                print("Debe añadir al carrito \n id_producto  -> \(selectedProd.id_product) \n Cantidad -> \(totalProd) \n Nombre -> \(selectedProd.name) \n Id_Detalle -> \(attSelected.id_product_attribute) \n Precio : \(precioUnitario) ")
+                
+            }){
                 Text("Añadir al Carrito")
                     .font(.title2)
                     .fontWeight(.bold)

@@ -38,6 +38,8 @@
 		DD822353251AD56D0057D7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822352251AD56D0057D7D3 /* Assets.xcassets */; };
 		DD822356251AD56D0057D7D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */; };
 		DD822359251AD56D0057D7D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD822357251AD56D0057D7D3 /* LaunchScreen.storyboard */; };
+		DDE561EF254CF17A00A32E47 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE561EE254CF17A00A32E47 /* UserModel.swift */; };
+		DDE561F2254D157800A32E47 /* UserDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE561F1254D157800A32E47 /* UserDataList.swift */; };
 		DDF7F4D72544B1C100BB9338 /* LogOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7F4D62544B1C100BB9338 /* LogOutView.swift */; };
 		DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF092522D39400D2DBAD /* NetworkingService.swift */; };
 		DDFADF0E2522D3F500D2DBAD /* nUsuarioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */; };
@@ -78,6 +80,8 @@
 		DD822355251AD56D0057D7D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD822358251AD56D0057D7D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD82235A251AD56D0057D7D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDE561EE254CF17A00A32E47 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		DDE561F1254D157800A32E47 /* UserDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataList.swift; sourceTree = "<group>"; };
 		DDF7F4D62544B1C100BB9338 /* LogOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
 		DDFADF092522D39400D2DBAD /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		DDFADF0D2522D3F500D2DBAD /* nUsuarioResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nUsuarioResponse.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 			children = (
 				DD077BA42533EF61008BC1FB /* ProductModel.swift */,
 				DD1A1229253F5E3F008B1149 /* GlobalInfo.swift */,
+				DDE561EE254CF17A00A32E47 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			children = (
 				DD50C9E825428D4B003BEBD0 /* SlidersList.swift */,
 				DD77787F254522970006A6CE /* ProductList.swift */,
+				DDE561F1254D157800A32E47 /* UserDataList.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 				DD017445253FDD980077F279 /* getSlides.swift in Sources */,
 				DD2C5B1C252EA3610071C05D /* ActivityIndicator.swift in Sources */,
 				DD50C9E925428D4B003BEBD0 /* SlidersList.swift in Sources */,
+				DDE561EF254CF17A00A32E47 /* UserModel.swift in Sources */,
 				DD1A122A253F5E3F008B1149 /* GlobalInfo.swift in Sources */,
 				DD386CD225280D5D00384EAE /* CustomCorner.swift in Sources */,
 				DD822351251AD56A0057D7D3 /* ContentView.swift in Sources */,
@@ -320,6 +327,7 @@
 				DD1A122E253F77F6008B1149 /* ProductDetailView2.swift in Sources */,
 				DDF7F4D72544B1C100BB9338 /* LogOutView.swift in Sources */,
 				DD77787D254515310006A6CE /* getInfoWS.swift in Sources */,
+				DDE561F2254D157800A32E47 /* UserDataList.swift in Sources */,
 				DDFADF0A2522D39400D2DBAD /* NetworkingService.swift in Sources */,
 				DDFADF112522D42400D2DBAD /* nUsuarioErrorResponse.swift in Sources */,
 				DD51264F2529305E0056B4C2 /* Banner.swift in Sources */,

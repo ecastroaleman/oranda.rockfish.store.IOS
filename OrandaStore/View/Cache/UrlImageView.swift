@@ -19,7 +19,7 @@ struct UrlImageView: View {
     var body: some View {
         Image(uiImage: urlImageModel.image ?? UrlImageView.defaultImage!)
             .resizable()
-            .renderingMode(.original)
+         //   .renderingMode(.original)
           //  .scaledToFit()
             //.frame(width: 100, height: 100)
     }
@@ -29,6 +29,6 @@ struct UrlImageView: View {
 
 struct UrlImageView_Previews: PreviewProvider {
     static var previews: some View {
-        UrlImageView(urlString: nil)
+        UrlImageView(urlString: "http://oranda.rockfish.store/api/images/products/28/27/")
     }
 }

@@ -59,10 +59,9 @@ struct Menu : View {
                 
             }
                 
-                Text("Oranda RockFish Store")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("orange"))
+                VStack{
+                TextShimmer()
+                }
                 
             }.padding()
             .padding(.top,edges!.top )
@@ -183,3 +182,40 @@ struct Book : Identifiable {
 
 
 //new
+
+
+struct TextShimmer : View {
+    @State var show = false
+    var body : some View {
+        
+        ZStack {
+        
+        ZStack{
+            
+            Text("Oranda RockFish Store")
+                .font(.system(size: 20))
+            //    .fontWeight(.semibold)
+                .foregroundColor(Color("orange"))
+            
+            Text("Oranda RockFish Store")
+                .font(.system(size: 20))
+            //    .fontWeight(.semibold)
+                .foregroundColor(.white)
+                .mask(
+                Capsule()
+                    .fill(LinearGradient(gradient: .init(colors: [.clear,.white,.clear]), startPoint: .top, endPoint: .bottom))
+                    .rotationEffect(.init(degrees: 30))
+                    .offset(x: self.show ? 180 : -130)
+                   
+                )
+            
+            
+        }
+        }.onAppear{
+            
+            withAnimation(Animation.default.speed(0.1).delay(0).repeatForever(autoreverses: false )){
+                self.show.toggle()
+            }
+        }
+    }
+}

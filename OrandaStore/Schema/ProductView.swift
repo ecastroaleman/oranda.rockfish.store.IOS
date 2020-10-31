@@ -52,10 +52,10 @@ struct ProductView: View {
                         .font(.system(size: 25))
             }
             .frame(width: 200)
-            .background(Color.gray)
+            .background(Color.darkBackground)
            
                
-        } .background(Color.gray)
+        } .background(Color.darkBackground)
         .cornerRadius(20)
     }
 }
