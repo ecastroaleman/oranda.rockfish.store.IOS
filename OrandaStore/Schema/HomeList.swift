@@ -62,13 +62,9 @@ struct HomeList : View {
                         GeometryReader { geometry in
                             Button(action: {
                               //  print(model.posts[0].Slides[0].title)
-                                print("Esto no lo pinta -> \(model.posts[0].Slides[0].title)")
+                              
                                 
-                                if (model.mensajeResp != "OK"){
-                                    print(model.mensajeResp)
-                                }else{
-                                    print(model.mensajeResp)
-                                }
+                        
                                 
                             })
                             {

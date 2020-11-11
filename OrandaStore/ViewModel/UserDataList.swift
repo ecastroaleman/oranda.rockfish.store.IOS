@@ -21,7 +21,7 @@ import Combine
 import Foundation
 
 final class UserDataList : ObservableObject{
-    
+    @EnvironmentObject var general : GlobalInfo
     init(){
        
         fetchUserDataList()
@@ -36,15 +36,21 @@ final class UserDataList : ObservableObject{
     didSet {
         didChange.send(self)
     }
+   
 }
     public func fetchUserDataList(){
+       // print("info general.menu.name -> \(general.menu.name)")
+       // self.postsPD = [general.info]
+        self.mensajeRespPD = "Seteado Manual"
+        return
+        /*
         getInfoWS(tipo: "ProductoDestacado").getMenu(pusuario: "emilio.castro.aleman@ericsson.com", pclave: "abcd1234"){retPD, resPD in
          //   print("Si trae dato PD -> \(retPD.Datos[0].name)")
             print("Mensaje dato PD es ->\(resPD)")
             self.postsPD = [retPD]
             self.mensajeRespPD = resPD
             return
-        }
+        }*/
         
      
     }

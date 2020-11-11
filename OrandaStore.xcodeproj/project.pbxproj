@@ -24,6 +24,7 @@
 		DD51264F2529305E0056B4C2 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51264E2529305E0056B4C2 /* Banner.swift */; };
 		DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79825200954002F182A /* PasswordRecovery.swift */; };
 		DD56B79C2520327D002F182A /* NuevoUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56B79B2520327D002F182A /* NuevoUsuario.swift */; };
+		DD64A957255B861900BDF3CA /* OrderResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD64A956255B861900BDF3CA /* OrderResume.swift */; };
 		DD71040D2523E05100FA673A /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD71040C2523E05100FA673A /* Temporal.swift */; };
 		DD77787D254515310006A6CE /* getInfoWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77787C254515310006A6CE /* getInfoWS.swift */; };
 		DD777880254522970006A6CE /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77787F254522970006A6CE /* ProductList.swift */; };
@@ -64,6 +65,7 @@
 		DD51264E2529305E0056B4C2 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		DD56B79825200954002F182A /* PasswordRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecovery.swift; sourceTree = "<group>"; };
 		DD56B79B2520327D002F182A /* NuevoUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuevoUsuario.swift; sourceTree = "<group>"; };
+		DD64A956255B861900BDF3CA /* OrderResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderResume.swift; sourceTree = "<group>"; };
 		DD71040C2523E05100FA673A /* Temporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
 		DD77787C254515310006A6CE /* getInfoWS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getInfoWS.swift; sourceTree = "<group>"; };
 		DD77787F254522970006A6CE /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		DD64A954255B859F00BDF3CA /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				DD64A956255B861900BDF3CA /* OrderResume.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		DD7F9D5925462E460082E552 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 		DD82234B251AD56A0057D7D3 /* OrandaStore */ = {
 			isa = PBXGroup;
 			children = (
+				DD64A954255B859F00BDF3CA /* Orders */,
 				DD50C9E725428D39003BEBD0 /* ViewModel */,
 				DD077B9B2532A4CE008BC1FB /* ItemDetail */,
 				DD077B8E2530D152008BC1FB /* Images */,
@@ -336,6 +347,7 @@
 				DD7F9D6225462ED90082E552 /* UrlWebView.swift in Sources */,
 				DD56B79925200954002F182A /* PasswordRecovery.swift in Sources */,
 				DD7F9D5B25462E560082E552 /* UrlImageModel.swift in Sources */,
+				DD64A957255B861900BDF3CA /* OrderResume.swift in Sources */,
 				DD077B942530D18A008BC1FB /* URLImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

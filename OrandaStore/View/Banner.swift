@@ -179,6 +179,15 @@ struct Card : View{
    
     
 }
+
+struct Book : Identifiable {
+    var id : Int
+    var image : String
+    var title : String
+    var author : String
+    var rating : Int
+    var offset : CGFloat
+}
 var books = [
     Book(id: 0, image: "image1", title: "Peces y Mas ", author: "Emilio Castro", rating: 3, offset: 0),
     Book(id: 1, image: "image2", title: "Peces y Mas ", author: "Emilio Castro", rating: 3, offset: 0),

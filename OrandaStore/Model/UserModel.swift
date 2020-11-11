@@ -60,6 +60,24 @@ struct UserLogeado: Codable, Hashable {
     var Menu : UserMenu
 }
 
+struct UserMenu : Codable, Hashable {
+    var id_category : String
+    var name : String
+    var SubMenu : [UsrSubMenu]?
+    
+}
+
+struct UsrSubMenu: Codable, Hashable {
+    var id_category : String
+    var name : String
+    var SubMenu : [UsrSubSubMenu]?
+}
+
+struct UsrSubSubMenu: Codable, Hashable {
+    var id_category : String
+    var name : String
+}
+
 struct Direcciones: Codable, Hashable {
     var alias : String
     var iso_code : String
@@ -90,14 +108,4 @@ struct Pedidos: Codable, Hashable {
     var invoice_number : String
 }
 
-struct UserMenu : Codable, Hashable {
-    var id_category : String
-    var name : String
-    var SubMenu : [UsrSubMenu]?
-    
-}
 
-struct UsrSubMenu: Codable, Hashable {
-    var id_category : String
-    var name : String
-}

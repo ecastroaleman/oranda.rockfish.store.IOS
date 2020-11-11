@@ -20,11 +20,17 @@ struct ContentView: View {
         
         if logged {
             
-            Menu()
+            Menu(geninfo: general.info)
                 .preferredColorScheme(.dark)
                 .navigationBarHidden(true)
                     .edgesIgnoringSafeArea(.all)
                     .statusBar(hidden: true)
+                .onAppear{
+                    if (general.info.access_token.isEmpty){print("Token is empty")
+                        logged.toggle()
+                        logged = false
+                    }
+                    print("En el onappear de Menu en ContentView")}
                 
             }else {
                 Home()
@@ -46,6 +52,7 @@ struct ContentView: View {
 struct DropDown : View {
     @State var expand  = false
     @State var titulo : String
+    var subitem : [UsrSubSubMenu]
     var body : some View {
         
     //    VStack(alignment: .leading,spacing: 18,  content: {
@@ -67,9 +74,12 @@ struct DropDown : View {
             
             if expand {
             
-                SubMenu(titulo: "Agua Dulce", expand: self.expand)
-                SubMenu(titulo: "Agua Salada", expand: self.expand)
-                SubMenu(titulo: "Otros", expand: self.expand)
+                ForEach(subitem, id:\.self){ sbitem in
+                    SubMenu(id: sbitem.id_category, titulo: "\(sbitem.name)", expand: self.expand)
+                }
+            //    SubMenu(titulo: "\(subitem[0].name)", expand: self.expand)
+             //   SubMenu(titulo: "Agua Salada", expand: self.expand)
+              //  SubMenu(titulo: "Otros", expand: self.expand)
             
       
             }
@@ -118,6 +128,14 @@ struct MenuButtons: View {
                         }
                     
                    
+                }else if title == "My Orders" {
+                    print("Total en Pedidos -> \(general.ped.count)")
+                    
+                    if (general.ped.count > 0){
+                        print(general.ped[0].id_order as Any)
+                        print((general.ped[0].reference) as String)
+                    }
+                    
                 }
             }
         }
@@ -147,6 +165,7 @@ struct Home : View {
     @AppStorage("stored_User") var user = ""
     @AppStorage("stored_Name") var storedName = ""
     @AppStorage("status1") var logged = false
+    @State var showAlert = false
    
     var body: some View{
     
@@ -205,26 +224,58 @@ struct Home : View {
               
                 HStack(spacing: 15){
                 Button(action: {
-                    print("user -> \(userName)")
-                    print("pass -> \(password)")
+                  
                     
-                    print("Llamando al WS")
+                    print("Llamando al WS Login")
                     
                     getInfoWS(tipo: "Login").getMenu(pusuario: userName, pclave: password){retPD, resPD in
                      //   print("Si trae dato PD -> \(retPD.Datos[0].name)")
-                        print("Mensaje dato PD es ->\(resPD)")
-                        print("Datos -> \(retPD.access_token)")
+                        print("Mensaje Login : PD es ->\(resPD)")
+                        print("Token en Login -> \(retPD.access_token)")
                 
                         if (resPD != "OK"){
                             print("Error de Login")
+                            self.general.info.access_token = "ERROR"
+                            withAnimation(.easeOut){showAlert.toggle()}
+                                
                         }else{
                             
+                            self.general.info.access_token = retPD.access_token
+                            self.general.info.expires_in = retPD.expires_in
+                            self.general.info.token_type = retPD.token_type
+                            self.general.info.id_customer = retPD.id_customer
+                            self.general.info.name = retPD.name
+                            self.general.info.firstname = retPD.firstname
+                            self.general.info.lastname = retPD.lastname
+                            self.general.info.birthday = retPD.birthday
+                           
+                            self.general.info.Menu = retPD.Menu
+                            self.general.menu = retPD.Menu
+                            self.general.ped = retPD.Pedidos ??  [Pedidos(id_order: "", reference: "", name: "", date_add: "", payment: "", entrega: "", dir_entrega: "", dir_entrega2: "", facturacion: "", dir_facturacion: "", dir_facturacion2: "", symbol: "", total_paid: "", invoice_number: "")]
+                            
                             self.general.apellidos = retPD.firstname+" "+retPD.lastname
-                            self.general.token = retPD.access_token
-                            self.general.id_customer = Int(retPD.id_customer)!
+                            
+                        //    self.general.id_customer = Int(retPD.id_customer)!
                             self.general.email = userName
                             storedName = retPD.firstname+" "+retPD.lastname
                             user = userName
+                           
+                            
+                            
+                            
+                            for i in 0..<retPD.Menu.SubMenu!.count {
+                                print("\(retPD.Menu.SubMenu![i].id_category) - \(retPD.Menu.SubMenu![i].name)")
+                             
+                                if (retPD.Menu.SubMenu![i].SubMenu != nil) {
+                            //    print("Total -> \(retPD.Menu.SubMenu![i].SubMenu!.count)")
+                            
+                                        for e in 0..<retPD.Menu.SubMenu![i].SubMenu!.count {
+                                    print("   \(retPD.Menu.SubMenu![i].SubMenu![e].id_category) - \(retPD.Menu.SubMenu![i].SubMenu![e].name)")
+                                   
+                                }
+                                }
+                            }
+                            
                             withAnimation(.easeOut){logged = true}
                             
                             
@@ -260,6 +311,13 @@ struct Home : View {
                 })
                 .opacity(userName != "" && password != "" ? 1:0)
                 .disabled(userName != "" && password != "" ? false : true)
+                .alert(isPresented: $showAlert, content: {
+                    Alert(title: Text("ERROR"), message: Text("Usuario o Contraseña Invalidos..."), dismissButton: .cancel(Text("Aceptar")))
+                       
+                })
+                
+                //.animation(Animation.easeInOut(duration: 3).delay(1))
+                    
                     
                     if getBiometricStatus(){
                         Button(action: authenticateUser, label: {
@@ -351,10 +409,11 @@ struct Home : View {
 
 
 struct SubMenu: View {
+    @State var id : String
     @State var titulo : String
     @State var expand : Bool
     var body: some View {
-        Button(action: {print(titulo); expand.toggle()}) {
+        Button(action: {print("\(id) - \(titulo)"); expand.toggle()}) {
             Text("          \(titulo)")
                 .font(.body)
                 .fontWeight(.light)

@@ -22,6 +22,7 @@ struct Menu : View {
     @AppStorage("status1") var logged = false
     @State var search = ""
     @Namespace var animation
+    var geninfo : UserLogeado
     var body: some View {
         
         ZStack {
@@ -130,13 +131,28 @@ struct Menu : View {
                         MenuButtons(image: "creditcard", title: "Payment Method",selected: $selectedIndex, show: $show,logged: logged)
                         MenuButtons(image: "envelope", title: "Contact Us",selected: $selectedIndex, show: $show, logged: logged)
                         
-                        DropDown(titulo: "Peces")
-                        DropDown(titulo: "Accesorios")
-                        DropDown(titulo: "Alimento")
+                       //, id: \.id
                         
-                        MenuButtons(image: "info.circle", title: "Help & FAQs",selected: $selectedIndex, show: $show,logged: logged)
+                       
+                     
                         
-                        MenuButtons(image: "arrow.left.circle", title: "Salir", selected: $selectedIndex, show: $show
+                        ForEach(geninfo.Menu.SubMenu!, id:\.self){ sdato5 in
+                            DropDown(titulo: "\(sdato5.name)", subitem: sdato5.SubMenu ?? [UsrSubSubMenu(id_category: sdato5.id_category, name: sdato5.name)])
+                        }
+                  /*     ForEach(geninfo.postsPD, id: \.Menu) { sdato3 in
+                           
+                            Text("\(sdato3.Menu.name)")
+                            DropDown(titulo: "\(sdato3.Menu.name)")
+                            //DropDown(titulo: "\(general.Menu.SubMenu![itemm].name)")
+                        }*/
+                        
+                      //  DropDown(titulo: "Peces")
+                       // DropDown(titulo: "Accesorios")
+                       // DropDown(titulo: "Alimento")
+                        
+                     //   MenuButtons(image: "info.circle", title: "Help & FAQs",selected: $selectedIndex, show: $show,logged: logged)
+                        
+                       MenuButtons(image: "arrow.left.circle", title: "Salir", selected: $selectedIndex, show: $show
                                     ,logged: logged)
                     })
                     .padding(.top)
@@ -171,14 +187,7 @@ struct Menu_Previews: PreviewProvider {
 }*/
 
 
-struct Book : Identifiable {
-    var id : Int
-    var image : String
-    var title : String
-    var author : String
-    var rating : Int
-    var offset : CGFloat
-}
+
 
 
 //new
